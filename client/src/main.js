@@ -15,5 +15,5 @@ let client = new Colyseus.Client("ws://localhost:80");
 		}
 	});
 
-	//
+	
 	
