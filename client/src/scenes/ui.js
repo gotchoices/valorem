@@ -2,7 +2,7 @@
 
 /* START OF COMPILED CODE */
 
- export default class UI extends Phaser.Scene {
+export default class UI extends Phaser.Scene {
   constructor() {
     super("UI");
 

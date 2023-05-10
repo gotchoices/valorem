@@ -21,11 +21,13 @@
 const colyseus = require("colyseus");
 const http = require("http");
 const express = require("express");
-const port = process.env.port || 80;
+const cors = require('cors');
+const port = process.env.port || 8000;
 
 const {MyRoom} = require("./rooms/MyRoom");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const gameServer = new colyseus.Server({
