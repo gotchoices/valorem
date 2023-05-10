@@ -74,8 +74,24 @@
 
   // Write more your code here
 
-  create() {
-    this.editorCreate();
+    
+  async create() {
+
+   const client = new Colyseus.Client("ws://localhost:8000");
+   
+    const room=  await client.joinOrCreate('my_room');
+      this.editorCreate();
+
+
+      this.ellipse_1.setInteractive();
+      this.ellipse_1.on('pointerdown', () => {
+        room.send('message', 'Button was pressed on client!');
+        console.log("button pressed");
+      });
+      console.log("joined successfully")
+
+
+
   }
 
   /* END-USER-CODE */
