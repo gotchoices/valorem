@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "colyseus": "^0.15.0"
+  },
+   "scripts": {
+    "start": "node ../server/src/index.js",
+    "build": ""
+  }
+}
