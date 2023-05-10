@@ -2,7 +2,7 @@
 
 /* START OF COMPILED CODE */
 
- export default class UI extends Phaser.Scene {
+export default class UI extends Phaser.Scene {
   constructor() {
     super("UI");
 
@@ -74,8 +74,14 @@
 
   // Write more your code here
 
-  create() {
+     client = new Colyseus.Client("ws://localhost:8000");
+     room;
+     // await client.joinOrCreate('my_room').then(() => {
+     // console.log("joined successfully")})
+  async create() {
     this.editorCreate();
+      await this.client.joinOrCreate('my_room').then(() => {
+      console.log("joined successfully")})
   }
 
   /* END-USER-CODE */

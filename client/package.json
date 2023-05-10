@@ -2,8 +2,9 @@
   "dependencies": {
     "colyseus": "^0.15.0"
   },
+  "type": "module",
    "scripts": {
-    "start": "node ../server/src/index.js",
+    "start": "node index.html",
     "build": ""
   }
 }
