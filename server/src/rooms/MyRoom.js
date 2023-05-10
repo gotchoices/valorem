@@ -10,6 +10,7 @@ exports.MyRoom = class extends colyseus.Room {
       //
       // handle "type" message.
       //
+      console.log(`Message from client: ${message}`);
     });
 
   }

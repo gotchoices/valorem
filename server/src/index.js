@@ -23,6 +23,8 @@ const http = require("http");
 const express = require("express");
 const port = process.env.port || 80;
 
+const {MyRoom} = require("./rooms/MyRoom");
+
 const app = express();
 app.use(express.json());
 
@@ -30,4 +32,9 @@ const gameServer = new colyseus.Server({
     server: http.createServer(app)
 });
 
-gameServer.listen(port, {hostname:'localhost'});
+// Register MyRoom as "my_room"
+gameServer.define('my_room', MyRoom);
+
+gameServer.listen(port,{hostname:'localhost'});
+
+console.log(`Listening on http://localhost:${port}`);
