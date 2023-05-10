@@ -30,4 +30,4 @@ const gameServer = new colyseus.Server({
     server: http.createServer(app)
 });
 
-gameServer.listen(port);
+gameServer.listen(port, {hostname:'localhost'});
