@@ -109,7 +109,7 @@ Tempus Valorem Game Model:
 - Redemption Stage:
   - No more trading may be performed
   - The Marketplace disappears
-  - A player's own roposed trades are still retained and can be modified or unlisted during this
+  - A player's own proposed trades are still retained and can be modified or unlisted during this
     stage and during the following Acquisition Stage but will not be shown to other players in
     the Marketplace until the next Trading Stage.
   - Round scoring is computed as follows:
