@@ -91,7 +91,6 @@ export default class UI extends Phaser.Scene {
       console.log("joined successfully")
 
 
-
   }
 
   /* END-USER-CODE */
