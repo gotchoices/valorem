@@ -74,14 +74,23 @@ export default class UI extends Phaser.Scene {
 
   // Write more your code here
 
-     client = new Colyseus.Client("ws://localhost:8000");
-     room;
-     // await client.joinOrCreate('my_room').then(() => {
-     // console.log("joined successfully")})
+    
   async create() {
-    this.editorCreate();
-      await this.client.joinOrCreate('my_room').then(() => {
-      console.log("joined successfully")})
+
+   const client = new Colyseus.Client("ws://localhost:8000");
+   
+    const room=  await client.joinOrCreate('my_room');
+      this.editorCreate();
+
+
+      this.ellipse_1.setInteractive();
+      this.ellipse_1.on('pointerdown', () => {
+        room.send('message', 'Button was pressed on client!');
+        console.log("button pressed");
+      });
+      console.log("joined successfully")
+
+
   }
 
   /* END-USER-CODE */

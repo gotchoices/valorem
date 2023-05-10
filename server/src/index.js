@@ -34,9 +34,10 @@ const gameServer = new colyseus.Server({
     server: http.createServer(app)
 });
 
+// Register MyRoom as "my_room"
 gameServer.define('my_room', MyRoom);
 
-// gameServer.listen(port, {hostname:'localhost'});
-gameServer.listen(port, 'localhost');
+gameServer.listen(port,{hostname:'localhost'});
+
 
 console.log(`Listening on http://localhost:${port}`);
