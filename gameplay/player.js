@@ -1,8 +1,9 @@
 class Player {
-    constructor(name) {
+    constructor({id, name}) {
+        this.id = id
         this.name = name;
         this.holdings = {
-            time: new Time(),
+            time: 0,
             commodities: {
                 consumables: new Commodity('consumables'),
                 durables: new Commodity('durables'),
@@ -18,6 +19,38 @@ class Player {
     }
 
     // Rest of the Player class methods...
+
+    acquireHolding(arg) {
+        // Check if the argument is a Commodity or Capital
+        if (!(arg instanceof Commodity || arg instanceof Capital)) {
+            throw new Error('Argument must be a Commodity or Capital');
+        }
+
+        // Check all holdings
+        let transactionOutcome = "not found";
+        Object.values(this.holdings).forEach(holding => {
+            // If the holding is an object (commodities or capital),
+            // check its properties
+            if (typeof holding === 'object' && holding !== null) {
+                Object.values(holding).forEach(subHolding => {
+                    if (subHolding.type === arg.type) {
+                        if (this.time > arg.cost)
+                        {
+                            this.time -= holding.cost;
+                            subHolding.units += arg.units;
+                            transactionOutcome = "success";
+                        }
+                        else
+                        {
+                            transactionOutcome = "insufficient funds";
+                        }
+                    }
+                });
+            }
+        });
+
+        return transactionOutcome;
+    }
 }
 
 // Example of usage:
