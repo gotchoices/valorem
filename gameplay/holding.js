@@ -1,6 +1,7 @@
 class Holding {
-    constructor() {
+    constructor(cost) {
         this.units = 0;
+        this.cost = cost
     }
 
     addUnits(amount) {
