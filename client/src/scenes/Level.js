@@ -1,18 +1,26 @@
+
 // You can write more code here
 
 /* START OF COMPILED CODE */
 
-export default class UI extends Phaser.Scene {
-  constructor() {
-    super("UI");
+class Level extends Phaser.Scene {
 
-    /* START-USER-CTR-CODE */
-    // Write your code here.
-    /* END-USER-CTR-CODE */
-  }
- 
-  /** @returns {void} */
-  editorCreate() {
+	constructor() {
+		super("Level");
+
+		/* START-USER-CTR-CODE */
+		// Write your code here.
+		/* END-USER-CTR-CODE */
+	}
+
+	/** @returns {void} */
+	editorPreload() {
+
+		this.load.pack("preloadpack", "client/assets/preloadpack.json");
+	}
+
+	/** @returns {void} */
+	editorCreate() {
 
 		// rectangle_1
 		const rectangle_1 = this.add.rectangle(456, 802, 900, 1600);
@@ -224,68 +232,61 @@ export default class UI extends Phaser.Scene {
 		this.startButtonText = startButtonText;
 
 		this.events.emit("scene-awake");
-  }
+	}
 
-  /** @type {Phaser.GameObjects.Text} */
-  consVal;
-  /** @type {Phaser.GameObjects.Text} */
-  durVal;
-  /** @type {Phaser.GameObjects.Text} */
-  luxVal;
-  /** @type {Phaser.GameObjects.Ellipse} */
-  ellipse_1;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_2;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_3;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_5;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_4;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_6;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_7;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	rectangle_8;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	consVal;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	durVal;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	luxVal;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	submitButton___;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	time;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	capitalText;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	timeVal;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	durcapVal;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	luxcapVal;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	plus;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	minus;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	submitButtonText;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	startButton;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	startButtonText;
 
-  /* START-USER-CODE */
+	/* START-USER-CODE */
 
-  // Write more your code here
+	// Write your code here
 
-    preload(){
-     
+	create() {
 
-        this.load.pack("preloadpack", "assets/preloadpack.json");
-      
-    }
-  async create() {
+		this.editorCreate();
+	}
 
-   const client = new Colyseus.Client("ws://localhost:8000");
-   
-    const room=  await client.joinOrCreate('my_room');
-      this.editorCreate();
-
-
-    this.startButton.setInteractive();
-      this.startButton.on('pointerdown', () => {
-        room.send('player ready');
-        console.log("button pressed");
-      });
-      this.tweens.add({
-        targets: this.startButtonText,
-        alpha: 0,
-        duration: 1000,
-        yoyo: true,
-        loop: -1
-
-
-      })
-  //group game objects
-  this.allocation=this.add.group();
-  this.allocation.addMultiple([this.rectangle_2,this.rectangle_3,this.rectangle_4,this.rectangle_5,this.rectangle_6,this.rectangle_7,this.rectangle_8,this.consVal,this.durVal,this.luxVal,this.submitButton,this.time,this.capitalText,this.timeVal,this.durcapVal,this.luxcapVal,this.plus,this.minus,this.submitButtonText]);
-
-
-room.onMessage("begin allocation", (data) => {
- 
-this.allocation.getChildren().forEach((child) => {
-child.visible=true;
-child.setIntractive();
-
-});
-
-});
-
-
-  }
-
-  /* END-USER-CODE */
+	/* END-USER-CODE */
 }
 
 /* END OF COMPILED CODE */
