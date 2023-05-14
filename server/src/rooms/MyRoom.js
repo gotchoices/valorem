@@ -15,12 +15,12 @@ exports.MyRoom = class extends colyseus.Room {
     // //i'm trying to send 'player ready' from the client to the server
     // //and send 'begin allocation' from the server to the client
     // //to begin the game and set the visibility of the main game
-    // this.onMessage("player ready", (client, message) => {
-    //   //
-    //   // handle "type" message.
-    //   //
-    //   client.send('begin allocation')
-    // });
+    this.onMessage("player ready", (client, message) => {
+      //
+      // handle "type" message.
+      //
+      client.send('begin allocation')
+    });
   }
 
   onJoin (client, options) {
