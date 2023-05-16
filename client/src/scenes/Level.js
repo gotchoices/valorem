@@ -586,6 +586,7 @@ class Level extends Phaser.Scene {
 
 		this.startButton = startButton;
 		this.startButtonText = startButtonText;
+		this.ui = ui;
 		this.durCapSquare = durCapSquare;
 		this.luxSquare = luxSquare;
 		this.durSquare = durSquare;
@@ -617,43 +618,42 @@ class Level extends Phaser.Scene {
 		this.noButtonText = noButtonText;
 		this.yesButton = yesButton;
 		this.yesButtonText = yesButtonText;
-		this.ui = ui;
+		this.luxlights = luxlights;
 		this.luxlight5 = luxlight5;
 		this.luxlight4 = luxlight4;
 		this.luxlight3 = luxlight3;
 		this.luxlight2 = luxlight2;
 		this.luxlight1 = luxlight1;
-		this.luxlights = luxlights;
+		this.durlights = durlights;
 		this.durlight5 = durlight5;
 		this.durlight4 = durlight4;
 		this.durlight3 = durlight3;
 		this.durlight2 = durlight2;
 		this.durlight1 = durlight1;
-		this.durlights = durlights;
+		this.conlights = conlights;
 		this.conlight5 = conlight5;
 		this.conlight4 = conlight4;
 		this.conlight3 = conlight3;
 		this.conlight2 = conlight2;
 		this.conlight1 = conlight1;
-		this.conlights = conlights;
+		this.luxCapLights = luxCapLights;
 		this.luxCapLight5 = luxCapLight5;
 		this.luxCapLight4 = luxCapLight4;
 		this.luxCapLight3 = luxCapLight3;
 		this.luxCapLight2 = luxCapLight2;
 		this.luxCapLight1 = luxCapLight1;
-		this.luxCapLights = luxCapLights;
+		this.durCapLights = durCapLights;
 		this.durCapLight5 = durCapLight5;
 		this.durCapLight4 = durCapLight4;
 		this.durCapLight3 = durCapLight3;
 		this.durCapLight2 = durCapLight2;
 		this.durCapLight1 = durCapLight1;
-		this.durCapLights = durCapLights;
+		this.conCapLights = conCapLights;
 		this.conCapLight5 = conCapLight5;
 		this.conCapLight4 = conCapLight4;
 		this.conCapLight3 = conCapLight3;
 		this.conCapLight2 = conCapLight2;
 		this.conCapLight1 = conCapLight1;
-		this.conCapLights = conCapLights;
 
 		this.events.emit("scene-awake");
 	}
@@ -662,6 +662,8 @@ class Level extends Phaser.Scene {
 	startButton;
 	/** @type {Phaser.GameObjects.BitmapText} */
 	startButtonText;
+	/** @type {Phaser.GameObjects.Layer} */
+	ui;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	durCapSquare;
 	/** @type {Phaser.GameObjects.Rectangle} */
@@ -724,8 +726,8 @@ class Level extends Phaser.Scene {
 	yesButton;
 	/** @type {Phaser.GameObjects.BitmapText} */
 	yesButtonText;
-	/** @type {Phaser.GameObjects.Layer} */
-	ui;
+	/** @type {Phaser.GameObjects.Container} */
+	luxlights;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	luxlight5;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -737,7 +739,7 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Ellipse} */
 	luxlight1;
 	/** @type {Phaser.GameObjects.Container} */
-	luxlights;
+	durlights;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	durlight5;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -749,7 +751,7 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Ellipse} */
 	durlight1;
 	/** @type {Phaser.GameObjects.Container} */
-	durlights;
+	conlights;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	conlight5;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -761,7 +763,7 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Ellipse} */
 	conlight1;
 	/** @type {Phaser.GameObjects.Container} */
-	conlights;
+	luxCapLights;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	luxCapLight5;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -773,7 +775,7 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Ellipse} */
 	luxCapLight1;
 	/** @type {Phaser.GameObjects.Container} */
-	luxCapLights;
+	durCapLights;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	durCapLight5;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -785,7 +787,7 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Ellipse} */
 	durCapLight1;
 	/** @type {Phaser.GameObjects.Container} */
-	durCapLights;
+	conCapLights;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	conCapLight5;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -796,8 +798,6 @@ class Level extends Phaser.Scene {
 	conCapLight2;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	conCapLight1;
-	/** @type {Phaser.GameObjects.Container} */
-	conCapLights;
 
 	/* START-USER-CODE */
 

@@ -1,4 +1,4 @@
 .idea/
 node_modules
-*.scene
+
 phasereditor2d.config.json
