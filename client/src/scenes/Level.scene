@@ -22,7 +22,8 @@
             "isFilled": true,
             "fillColor": "#434343",
             "width": 900,
-            "height": 1600
+            "height": 1600,
+            "list": []
         },
         {
             "type": "Rectangle",
@@ -38,7 +39,8 @@
             "isFilled": true,
             "fillColor": "#3470c2",
             "width": 350,
-            "height": 128
+            "height": 128,
+            "list": []
         },
         {
             "type": "BitmapText",
@@ -52,7 +54,8 @@
             "tintFill": true,
             "text": "click here to start",
             "font": "spaceCrusaders",
-            "fontSize": 72
+            "fontSize": 72,
+            "list": []
         },
         {
             "type": "Layer",
@@ -77,7 +80,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -93,7 +97,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -109,7 +114,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -125,7 +131,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -141,7 +148,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -157,7 +165,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -172,7 +181,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 128,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -189,7 +199,8 @@
                     "tintFill": true,
                     "text": "Consumables Durables Luxuries",
                     "font": "spaceCrusaders",
-                    "fontSize": 44
+                    "fontSize": 44,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -203,7 +214,8 @@
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 44
+                    "fontSize": 44,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -217,7 +229,8 @@
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 44
+                    "fontSize": 44,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -231,7 +244,8 @@
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 44
+                    "fontSize": 44,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -245,7 +259,8 @@
                     "isFilled": true,
                     "fillColor": "#3470c2",
                     "width": 350,
-                    "height": 128
+                    "height": 128,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -255,14 +270,15 @@
                     "scope": "CLASS",
                     "components": [],
                     "x": 60,
-                    "y": 835,
+                    "y": 836,
                     "tintTopLeft": "#3470c2",
                     "tintTopRight": "#3470c2",
                     "tintBottomLeft": "#3470c2",
                     "tintFill": true,
                     "text": "Time",
                     "font": "spaceCrusaders",
-                    "fontSize": 44
+                    "fontSize": 44,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -279,7 +295,8 @@
                     "tintFill": true,
                     "text": "CONCAP      DURCAP       LUXCAP   ",
                     "font": "spaceCrusaders",
-                    "fontSize": 48
+                    "fontSize": 48,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -293,7 +310,8 @@
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 48
+                    "fontSize": 48,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -303,11 +321,12 @@
                     "scope": "CLASS",
                     "components": [],
                     "x": 83,
-                    "y": 1466,
+                    "y": 1467,
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 48
+                    "fontSize": 48,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -317,11 +336,12 @@
                     "scope": "CLASS",
                     "components": [],
                     "x": 417,
-                    "y": 1454,
+                    "y": 1455,
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 48
+                    "fontSize": 48,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -331,11 +351,12 @@
                     "scope": "CLASS",
                     "components": [],
                     "x": 736,
-                    "y": 1473,
+                    "y": 1474,
                     "tintFill": true,
                     "text": "0",
                     "font": "spaceCrusaders",
-                    "fontSize": 48
+                    "fontSize": 48,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -344,15 +365,16 @@
                     "useGameObjectName": true,
                     "scope": "CLASS",
                     "components": [],
-                    "x": 604,
-                    "y": 883.6666870117188,
+                    "x": 644,
+                    "y": 884.6666870117188,
                     "tintTopLeft": "#3470c2",
                     "tintTopRight": "#3470c2",
                     "tintBottomLeft": "#3470c2",
                     "tintFill": true,
                     "text": "+",
                     "font": "spaceCrusaders",
-                    "fontSize": 128
+                    "fontSize": 128,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -361,7 +383,7 @@
                     "useGameObjectName": true,
                     "scope": "CLASS",
                     "components": [],
-                    "x": 750,
+                    "x": 790,
                     "y": 882.6666870117188,
                     "tintTopLeft": "#3470c2",
                     "tintTopRight": "#3470c2",
@@ -369,7 +391,8 @@
                     "tintFill": true,
                     "text": "-",
                     "font": "spaceCrusaders",
-                    "fontSize": 128
+                    "fontSize": 128,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -383,7 +406,8 @@
                     "tintFill": true,
                     "text": "submit",
                     "font": "spaceCrusaders",
-                    "fontSize": 72
+                    "fontSize": 72,
+                    "list": []
                 },
                 {
                     "type": "Rectangle",
@@ -402,7 +426,8 @@
                     "lineWidth": 4,
                     "isStroked": true,
                     "width": 145,
-                    "height": 145
+                    "height": 145,
+                    "list": []
                 },
                 {
                     "type": "BitmapText",
@@ -421,7 +446,152 @@
                     "text": "Allocate \nTime",
                     "font": "spaceCrusaders",
                     "align": 1,
-                    "fontSize": 150
+                    "fontSize": 150,
+                    "list": []
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "b90070f5-4810-431c-a18f-3e26cdcc10cb",
+                    "label": "buyButton",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 79,
+                    "y": 951,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#be1440",
+                    "lineWidth": 4,
+                    "isStroked": true,
+                    "width": 124,
+                    "height": 128,
+                    "list": []
+                },
+                {
+                    "type": "BitmapText",
+                    "id": "83b17d70-583c-44e0-a6e2-adf48192f9ae",
+                    "label": "buyButtonText",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 31,
+                    "y": 927,
+                    "visible": false,
+                    "tintTopLeft": "#3470c2",
+                    "tintBottomRight": "#3470c2",
+                    "tintFill": true,
+                    "text": "Buy",
+                    "font": "spaceCrusaders",
+                    "fontSize": 48,
+                    "list": []
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "99e387ea-046b-4f6a-85c8-c7809c9a2334",
+                    "label": "sellButton",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 237,
+                    "y": 951,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#be1440",
+                    "lineWidth": 4,
+                    "isStroked": true,
+                    "width": 124,
+                    "height": 128,
+                    "list": []
+                },
+                {
+                    "type": "BitmapText",
+                    "id": "a889982b-c24a-4553-8b76-b8c789b279ad",
+                    "label": "sellButtonText",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 189,
+                    "y": 927,
+                    "visible": false,
+                    "tintTopLeft": "#3470c2",
+                    "tintBottomRight": "#3470c2",
+                    "tintFill": true,
+                    "text": "Sell",
+                    "font": "spaceCrusaders",
+                    "fontSize": 48,
+                    "list": []
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "2e69c861-c996-4e4f-84bf-2a7fcdf4ffa3",
+                    "label": "noButton",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 540,
+                    "y": 951,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#ff3636",
+                    "lineWidth": 4,
+                    "isStroked": true,
+                    "width": 124,
+                    "height": 128,
+                    "list": []
+                },
+                {
+                    "type": "BitmapText",
+                    "id": "9a67e93b-413b-4185-9159-aefcfb5d0023",
+                    "label": "noButtonText",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 492,
+                    "y": 927,
+                    "visible": false,
+                    "tintTopLeft": "#3470c2",
+                    "tintBottomRight": "#3470c2",
+                    "tintFill": true,
+                    "text": "no",
+                    "font": "spaceCrusaders",
+                    "fontSize": 48,
+                    "list": []
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "d65a83cc-d371-4007-a4ae-f6bc8c5c2ee1",
+                    "label": "yesButton",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 382,
+                    "y": 951,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#3efc3e",
+                    "lineWidth": 4,
+                    "isStroked": true,
+                    "width": 124,
+                    "height": 128,
+                    "list": []
+                },
+                {
+                    "type": "BitmapText",
+                    "id": "0528bfe0-dff8-4624-9b1b-15db87c85258",
+                    "label": "yesButtonText",
+                    "useGameObjectName": true,
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 334,
+                    "y": 927,
+                    "visible": false,
+                    "tintTopLeft": "#3470c2",
+                    "tintBottomRight": "#3470c2",
+                    "tintFill": true,
+                    "text": "yes",
+                    "font": "spaceCrusaders",
+                    "fontSize": 48,
+                    "list": []
                 }
             ]
         },
@@ -447,7 +617,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -460,7 +631,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -473,7 +645,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -486,7 +659,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -498,7 +672,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 }
             ]
         },
@@ -524,7 +699,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -537,7 +713,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -550,7 +727,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -563,7 +741,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -575,7 +754,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 }
             ]
         },
@@ -601,7 +781,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -614,7 +795,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -627,7 +809,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -640,7 +823,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -652,7 +836,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 }
             ]
         },
@@ -678,7 +863,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -691,7 +877,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -704,7 +891,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -717,7 +905,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -729,7 +918,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 }
             ]
         },
@@ -755,7 +945,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -768,7 +959,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -781,7 +973,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -794,7 +987,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -806,7 +1000,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 }
             ]
         },
@@ -832,7 +1027,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -845,7 +1041,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -858,7 +1055,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -871,7 +1069,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
+                    "height": 10,
+                    "list": []
                 },
                 {
                     "type": "Ellipse",
@@ -883,364 +1082,8 @@
                     "isFilled": true,
                     "fillColor": "#ff0000",
                     "width": 10,
-                    "height": 10
-                }
-            ]
-        },
-        {
-            "type": "Layer",
-            "id": "baccdf9c-5e33-4fae-aa50-73c64ce4c651",
-            "label": "tradeUI",
-            "useGameObjectName": true,
-            "scope": "CLASS",
-            "components": [],
-            "visible": false,
-            "list": [
-                {
-                    "type": "Rectangle",
-                    "id": "20127416-d7f2-4e06-819b-7df3ad93f2a4",
-                    "label": "tradeStage",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 455,
-                    "y": 409,
-                    "scaleX": 5.827964926609718,
-                    "scaleY": 5.295269907558686,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "strokeColor": "#9d9d9d",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 145,
-                    "height": 145
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "47a6a3ae-5391-44d4-b205-58ed351c572a",
-                    "label": "tradeStageText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 475,
-                    "y": 259,
-                    "originX": 0.5,
-                    "tintTopLeft": "#3470c2",
-                    "tintTopRight": "#3470c2",
-                    "tintBottomLeft": "#3470c2",
-                    "tintFill": true,
-                    "text": "TRADE\nHOLDINGS",
-                    "font": "spaceCrusaders",
-                    "align": 1,
-                    "fontSize": 150
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "e5cdaabb-e184-4d28-bbcd-edfb9da8e7df",
-                    "label": "capitalText_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 26,
-                    "y": 1360,
-                    "tintTopLeft": "#3470c2",
-                    "tintTopRight": "#3470c2",
-                    "tintBottomLeft": "#3470c2",
-                    "tintFill": true,
-                    "text": "CONCAP      DURCAP       LUXCAP   ",
-                    "font": "spaceCrusaders",
-                    "fontSize": 48
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "666564fb-fdc4-4b24-989e-b027b6985b39",
-                    "label": "Time_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 60,
-                    "y": 835,
-                    "tintTopLeft": "#3470c2",
-                    "tintTopRight": "#3470c2",
-                    "tintBottomLeft": "#3470c2",
-                    "tintFill": true,
-                    "text": "Time",
-                    "font": "spaceCrusaders",
-                    "fontSize": 44
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "128292fb-6c94-4d6b-a889-b603007c9546",
-                    "label": "submitButton_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 394,
-                    "y": 964,
-                    "isFilled": true,
-                    "fillColor": "#3470c2",
-                    "width": 350,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "daecdd0c-021a-470f-89eb-836154b6c3ad",
-                    "label": "rectangle",
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 122,
-                    "y": 966,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "f23e2398-271d-485e-9ede-426b932af2b9",
-                    "label": "conCapSquare_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 122,
-                    "y": 1496,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "418de778-ce8a-403f-8ecf-8fa0da4178c7",
-                    "label": "conSquare_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 122,
-                    "y": 1179,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "20108b4d-1fbd-48b3-a34c-06919a199f09",
-                    "label": "luxCapSquare_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 758,
-                    "y": 1497,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "c7fd382e-d533-41fb-b9f4-6c3b2bd44f48",
-                    "label": "durSquare_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 440,
-                    "y": 1180,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "91c55d16-8566-4e21-92fb-168ff74196b6",
-                    "label": "luxSquare_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 758,
-                    "y": 1181,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "80333124-50ec-415b-9827-2243745b8c82",
-                    "label": "durCapSquare_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 440,
-                    "y": 1498,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "lineWidth": 4,
-                    "isStroked": true,
-                    "width": 128,
-                    "height": 128
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "0a60f948-cd04-40a3-b952-16b2897b407b",
-                    "label": "tradeMinus",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 751,
-                    "y": 883,
-                    "tintTopLeft": "#3470c2",
-                    "tintTopRight": "#3470c2",
-                    "tintBottomLeft": "#3470c2",
-                    "tintFill": true,
-                    "text": "-",
-                    "font": "spaceCrusaders",
-                    "fontSize": 128
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "6b633c75-7998-4b2f-b97d-460d37aa60d0",
-                    "label": "tradePlus",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 605,
-                    "y": 884,
-                    "tintTopLeft": "#3470c2",
-                    "tintTopRight": "#3470c2",
-                    "tintBottomLeft": "#3470c2",
-                    "tintFill": true,
-                    "text": "+",
-                    "font": "spaceCrusaders",
-                    "fontSize": 128
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "eb95e1da-2b2a-4595-a7c5-4776728e58c9",
-                    "label": "tradeLuxCapValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 736,
-                    "y": 1473,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 48
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "de898a50-1122-40ee-9232-c4b7392d5c98",
-                    "label": "tradeDurCapValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 417,
-                    "y": 1454,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 48
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "1b898480-8309-4bcc-8d62-d2daf93bb216",
-                    "label": "tradeConCapValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 83,
-                    "y": 1466,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 48
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "65936690-f5f8-4e8b-92b5-74aada3e6a9b",
-                    "label": "tradeTime ValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 102,
-                    "y": 935,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 48
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "d6b1c56d-8187-4bce-ab80-90244f8f996f",
-                    "label": "tradeDurValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 421,
-                    "y": 1144,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 44
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "6f641dd0-968e-4f8b-851a-526939e21f30",
-                    "label": "tradeConValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 114,
-                    "y": 1144,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 44
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "66197b1d-8e90-4caf-9d98-1eb1da8471ee",
-                    "label": "tradeLuxValText",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 728,
-                    "y": 1143,
-                    "tintFill": true,
-                    "text": "0",
-                    "font": "spaceCrusaders",
-                    "fontSize": 44
-                },
-                {
-                    "type": "BitmapText",
-                    "id": "a8ac1e30-6af3-4fed-819b-4d907e03f2ab",
-                    "label": "commoditiesText_1",
-                    "useGameObjectName": true,
-                    "scope": "CLASS",
-                    "components": [],
-                    "x": 33,
-                    "y": 1051,
-                    "tintTopLeft": "#3470c2",
-                    "tintTopRight": "#3470c2",
-                    "tintBottomLeft": "#3470c2",
-                    "tintFill": true,
-                    "text": "Consumables Durables Luxuries",
-                    "font": "spaceCrusaders",
-                    "fontSize": 44
+                    "height": 10,
+                    "list": []
                 }
             ]
         }

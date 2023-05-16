@@ -19,7 +19,7 @@ export default class UI extends Phaser.Scene {
   }
 
   /** @returns {void} */
-
+ 
   editorCreate() {
 
 	// rectangle_1
@@ -152,7 +152,7 @@ export default class UI extends Phaser.Scene {
 	ui.add(submitButton);
 
 	// timeText
-	const timeText = this.add.bitmapText(60, 835, "spaceCrusaders", "Time");
+	const timeText = this.add.bitmapText(60, 836, "spaceCrusaders", "Time");
 	timeText.name = "timeText";
 	timeText.tintFill = true;
 	timeText.tintTopLeft = 3436738;
@@ -182,7 +182,7 @@ export default class UI extends Phaser.Scene {
 	ui.add(timeValText);
 
 	// conCapValText
-	const conCapValText = this.add.bitmapText(83, 1466, "spaceCrusaders", "0");
+	const conCapValText = this.add.bitmapText(83, 1467, "spaceCrusaders", "0");
 	conCapValText.name = "conCapValText";
 	conCapValText.tintFill = true;
 	conCapValText.text = "0";
@@ -190,7 +190,7 @@ export default class UI extends Phaser.Scene {
 	ui.add(conCapValText);
 
 	// durCapValText
-	const durCapValText = this.add.bitmapText(417, 1454, "spaceCrusaders", "0");
+	const durCapValText = this.add.bitmapText(417, 1455, "spaceCrusaders", "0");
 	durCapValText.name = "durCapValText";
 	durCapValText.tintFill = true;
 	durCapValText.text = "0";
@@ -198,7 +198,7 @@ export default class UI extends Phaser.Scene {
 	ui.add(durCapValText);
 
 	// luxCapValText
-	const luxCapValText = this.add.bitmapText(736, 1473, "spaceCrusaders", "0");
+	const luxCapValText = this.add.bitmapText(736, 1474, "spaceCrusaders", "0");
 	luxCapValText.name = "luxCapValText";
 	luxCapValText.tintFill = true;
 	luxCapValText.text = "0";
@@ -206,7 +206,7 @@ export default class UI extends Phaser.Scene {
 	ui.add(luxCapValText);
 
 	// plus
-	const plus = this.add.bitmapText(604, 883.6666870117188, "spaceCrusaders", "+");
+	const plus = this.add.bitmapText(644, 884.6666870117188, "spaceCrusaders", "+");
 	plus.name = "plus";
 	plus.tintFill = true;
 	plus.tintTopLeft = 3436738;
@@ -217,7 +217,7 @@ export default class UI extends Phaser.Scene {
 	ui.add(plus);
 
 	// minus
-	const minus = this.add.bitmapText(750, 882.6666870117188, "spaceCrusaders", "-");
+	const minus = this.add.bitmapText(790, 882.6666870117188, "spaceCrusaders", "-");
 	minus.name = "minus";
 	minus.tintFill = true;
 	minus.tintTopLeft = 3436738;
@@ -259,6 +259,90 @@ export default class UI extends Phaser.Scene {
 	stageText.fontSize = 150;
 	stageText.align = 1;
 	ui.add(stageText);
+
+	// buyButton
+	const buyButton = this.add.rectangle(79, 951, 124, 128);
+	buyButton.name = "buyButton";
+	buyButton.visible = false;
+	buyButton.isFilled = true;
+	buyButton.fillColor = 12457024;
+	buyButton.isStroked = true;
+	buyButton.lineWidth = 4;
+	ui.add(buyButton);
+
+	// buyButtonText
+	const buyButtonText = this.add.bitmapText(31, 927, "spaceCrusaders", "Buy");
+	buyButtonText.name = "buyButtonText";
+	buyButtonText.visible = false;
+	buyButtonText.tintFill = true;
+	buyButtonText.tintTopLeft = 3436738;
+	buyButtonText.tintBottomRight = 3436738;
+	buyButtonText.text = "Buy";
+	buyButtonText.fontSize = 48;
+	ui.add(buyButtonText);
+
+	// sellButton
+	const sellButton = this.add.rectangle(237, 951, 124, 128);
+	sellButton.name = "sellButton";
+	sellButton.visible = false;
+	sellButton.isFilled = true;
+	sellButton.fillColor = 12457024;
+	sellButton.isStroked = true;
+	sellButton.lineWidth = 4;
+	ui.add(sellButton);
+
+	// sellButtonText
+	const sellButtonText = this.add.bitmapText(189, 927, "spaceCrusaders", "Sell");
+	sellButtonText.name = "sellButtonText";
+	sellButtonText.visible = false;
+	sellButtonText.tintFill = true;
+	sellButtonText.tintTopLeft = 3436738;
+	sellButtonText.tintBottomRight = 3436738;
+	sellButtonText.text = "Sell";
+	sellButtonText.fontSize = 48;
+	ui.add(sellButtonText);
+
+	// noButton
+	const noButton = this.add.rectangle(540, 951, 124, 128);
+	noButton.name = "noButton";
+	noButton.visible = false;
+	noButton.isFilled = true;
+	noButton.fillColor = 16725558;
+	noButton.isStroked = true;
+	noButton.lineWidth = 4;
+	ui.add(noButton);
+
+	// noButtonText
+	const noButtonText = this.add.bitmapText(492, 927, "spaceCrusaders", "no");
+	noButtonText.name = "noButtonText";
+	noButtonText.visible = false;
+	noButtonText.tintFill = true;
+	noButtonText.tintTopLeft = 3436738;
+	noButtonText.tintBottomRight = 3436738;
+	noButtonText.text = "no";
+	noButtonText.fontSize = 48;
+	ui.add(noButtonText);
+
+	// yesButton
+	const yesButton = this.add.rectangle(382, 951, 124, 128);
+	yesButton.name = "yesButton";
+	yesButton.visible = false;
+	yesButton.isFilled = true;
+	yesButton.fillColor = 4127806;
+	yesButton.isStroked = true;
+	yesButton.lineWidth = 4;
+	ui.add(yesButton);
+
+	// yesButtonText
+	const yesButtonText = this.add.bitmapText(334, 927, "spaceCrusaders", "yes");
+	yesButtonText.name = "yesButtonText";
+	yesButtonText.visible = false;
+	yesButtonText.tintFill = true;
+	yesButtonText.tintTopLeft = 3436738;
+	yesButtonText.tintBottomRight = 3436738;
+	yesButtonText.text = "yes";
+	yesButtonText.fontSize = 48;
+	ui.add(yesButtonText);
 
 	// luxlights
 	const luxlights = this.add.container(721, 1277);
@@ -500,219 +584,8 @@ export default class UI extends Phaser.Scene {
 	conCapLight1.fillColor = 16711680;
 	conCapLights.add(conCapLight1);
 
-	// tradeUI
-	const tradeUI = this.add.layer();
-	tradeUI.name = "tradeUI";
-	tradeUI.visible = false;
-
-	// tradeStage
-	const tradeStage = this.add.rectangle(455, 409, 145, 145);
-	tradeStage.name = "tradeStage";
-	tradeStage.scaleX = 5.827964926609718;
-	tradeStage.scaleY = 5.295269907558686;
-	tradeStage.isFilled = true;
-	tradeStage.fillColor = 0;
-	tradeStage.isStroked = true;
-	tradeStage.strokeColor = 10329501;
-	tradeStage.lineWidth = 4;
-	tradeUI.add(tradeStage);
-
-	// tradeStageText
-	const tradeStageText = this.add.bitmapText(475, 259, "spaceCrusaders", "TRADE\nHOLDINGS");
-	tradeStageText.name = "tradeStageText";
-	tradeStageText.setOrigin(0.5, 0);
-	tradeStageText.tintFill = true;
-	tradeStageText.tintTopLeft = 3436738;
-	tradeStageText.tintTopRight = 3436738;
-	tradeStageText.tintBottomLeft = 3436738;
-	tradeStageText.text = "TRADE\nHOLDINGS";
-	tradeStageText.fontSize = 150;
-	tradeStageText.align = 1;
-	tradeUI.add(tradeStageText);
-
-	// capitalText_1
-	const capitalText_1 = this.add.bitmapText(26, 1360, "spaceCrusaders", "CONCAP      DURCAP       LUXCAP   ");
-	capitalText_1.name = "capitalText_1";
-	capitalText_1.tintFill = true;
-	capitalText_1.tintTopLeft = 3436738;
-	capitalText_1.tintTopRight = 3436738;
-	capitalText_1.tintBottomLeft = 3436738;
-	capitalText_1.text = "CONCAP      DURCAP       LUXCAP   ";
-	capitalText_1.fontSize = 48;
-	tradeUI.add(capitalText_1);
-
-	// Time_1
-	const time_1 = this.add.bitmapText(60, 835, "spaceCrusaders", "Time");
-	time_1.name = "Time_1";
-	time_1.tintFill = true;
-	time_1.tintTopLeft = 3436738;
-	time_1.tintTopRight = 3436738;
-	time_1.tintBottomLeft = 3436738;
-	time_1.text = "Time";
-	time_1.fontSize = 44;
-	tradeUI.add(time_1);
-
-	// submitButton_1
-	const submitButton_1 = this.add.rectangle(394, 964, 350, 128);
-	submitButton_1.name = "submitButton_1";
-	submitButton_1.isFilled = true;
-	submitButton_1.fillColor = 3436738;
-	tradeUI.add(submitButton_1);
-
-	// rectangle
-	const rectangle = this.add.rectangle(122, 966, 128, 128);
-	rectangle.isFilled = true;
-	rectangle.fillColor = 0;
-	rectangle.isStroked = true;
-	rectangle.lineWidth = 4;
-	tradeUI.add(rectangle);
-
-	// conCapSquare_1
-	const conCapSquare_1 = this.add.rectangle(122, 1496, 128, 128);
-	conCapSquare_1.name = "conCapSquare_1";
-	conCapSquare_1.isFilled = true;
-	conCapSquare_1.fillColor = 0;
-	conCapSquare_1.isStroked = true;
-	conCapSquare_1.lineWidth = 4;
-	tradeUI.add(conCapSquare_1);
-
-	// conSquare_1
-	const conSquare_1 = this.add.rectangle(122, 1179, 128, 128);
-	conSquare_1.name = "conSquare_1";
-	conSquare_1.isFilled = true;
-	conSquare_1.fillColor = 0;
-	conSquare_1.isStroked = true;
-	conSquare_1.lineWidth = 4;
-	tradeUI.add(conSquare_1);
-
-	// luxCapSquare_1
-	const luxCapSquare_1 = this.add.rectangle(758, 1497, 128, 128);
-	luxCapSquare_1.name = "luxCapSquare_1";
-	luxCapSquare_1.isFilled = true;
-	luxCapSquare_1.fillColor = 0;
-	luxCapSquare_1.isStroked = true;
-	luxCapSquare_1.lineWidth = 4;
-	tradeUI.add(luxCapSquare_1);
-
-	// durSquare_1
-	const durSquare_1 = this.add.rectangle(440, 1180, 128, 128);
-	durSquare_1.name = "durSquare_1";
-	durSquare_1.isFilled = true;
-	durSquare_1.fillColor = 0;
-	durSquare_1.isStroked = true;
-	durSquare_1.lineWidth = 4;
-	tradeUI.add(durSquare_1);
-
-	// luxSquare_1
-	const luxSquare_1 = this.add.rectangle(758, 1181, 128, 128);
-	luxSquare_1.name = "luxSquare_1";
-	luxSquare_1.isFilled = true;
-	luxSquare_1.fillColor = 0;
-	luxSquare_1.isStroked = true;
-	luxSquare_1.lineWidth = 4;
-	tradeUI.add(luxSquare_1);
-
-	// durCapSquare_1
-	const durCapSquare_1 = this.add.rectangle(440, 1498, 128, 128);
-	durCapSquare_1.name = "durCapSquare_1";
-	durCapSquare_1.isFilled = true;
-	durCapSquare_1.fillColor = 0;
-	durCapSquare_1.isStroked = true;
-	durCapSquare_1.lineWidth = 4;
-	tradeUI.add(durCapSquare_1);
-
-	// tradeMinus
-	const tradeMinus = this.add.bitmapText(751, 883, "spaceCrusaders", "-");
-	tradeMinus.name = "tradeMinus";
-	tradeMinus.tintFill = true;
-	tradeMinus.tintTopLeft = 3436738;
-	tradeMinus.tintTopRight = 3436738;
-	tradeMinus.tintBottomLeft = 3436738;
-	tradeMinus.text = "-";
-	tradeMinus.fontSize = 128;
-	tradeUI.add(tradeMinus);
-
-	// tradePlus
-	const tradePlus = this.add.bitmapText(605, 884, "spaceCrusaders", "+");
-	tradePlus.name = "tradePlus";
-	tradePlus.tintFill = true;
-	tradePlus.tintTopLeft = 3436738;
-	tradePlus.tintTopRight = 3436738;
-	tradePlus.tintBottomLeft = 3436738;
-	tradePlus.text = "+";
-	tradePlus.fontSize = 128;
-	tradeUI.add(tradePlus);
-
-	// tradeLuxCapValText
-	const tradeLuxCapValText = this.add.bitmapText(736, 1473, "spaceCrusaders", "0");
-	tradeLuxCapValText.name = "tradeLuxCapValText";
-	tradeLuxCapValText.tintFill = true;
-	tradeLuxCapValText.text = "0";
-	tradeLuxCapValText.fontSize = 48;
-	tradeUI.add(tradeLuxCapValText);
-
-	// tradeDurCapValText
-	const tradeDurCapValText = this.add.bitmapText(417, 1454, "spaceCrusaders", "0");
-	tradeDurCapValText.name = "tradeDurCapValText";
-	tradeDurCapValText.tintFill = true;
-	tradeDurCapValText.text = "0";
-	tradeDurCapValText.fontSize = 48;
-	tradeUI.add(tradeDurCapValText);
-
-	// tradeConCapValText
-	const tradeConCapValText = this.add.bitmapText(83, 1466, "spaceCrusaders", "0");
-	tradeConCapValText.name = "tradeConCapValText";
-	tradeConCapValText.tintFill = true;
-	tradeConCapValText.text = "0";
-	tradeConCapValText.fontSize = 48;
-	tradeUI.add(tradeConCapValText);
-
-	// tradeTime ValText
-	const tradeTime_ValText = this.add.bitmapText(102, 935, "spaceCrusaders", "0");
-	tradeTime_ValText.name = "tradeTime ValText";
-	tradeTime_ValText.tintFill = true;
-	tradeTime_ValText.text = "0";
-	tradeTime_ValText.fontSize = 48;
-	tradeUI.add(tradeTime_ValText);
-
-	// tradeDurValText
-	const tradeDurValText = this.add.bitmapText(421, 1144, "spaceCrusaders", "0");
-	tradeDurValText.name = "tradeDurValText";
-	tradeDurValText.tintFill = true;
-	tradeDurValText.text = "0";
-	tradeDurValText.fontSize = 44;
-	tradeUI.add(tradeDurValText);
-
-	// tradeConValText
-	const tradeConValText = this.add.bitmapText(114, 1144, "spaceCrusaders", "0");
-	tradeConValText.name = "tradeConValText";
-	tradeConValText.tintFill = true;
-	tradeConValText.text = "0";
-	tradeConValText.fontSize = 44;
-	tradeUI.add(tradeConValText);
-
-	// tradeLuxValText
-	const tradeLuxValText = this.add.bitmapText(728, 1143, "spaceCrusaders", "0");
-	tradeLuxValText.name = "tradeLuxValText";
-	tradeLuxValText.tintFill = true;
-	tradeLuxValText.text = "0";
-	tradeLuxValText.fontSize = 44;
-	tradeUI.add(tradeLuxValText);
-
-	// commoditiesText_1
-	const commoditiesText_1 = this.add.bitmapText(33, 1051, "spaceCrusaders", "Consumables Durables Luxuries");
-	commoditiesText_1.name = "commoditiesText_1";
-	commoditiesText_1.tintFill = true;
-	commoditiesText_1.tintTopLeft = 3436738;
-	commoditiesText_1.tintTopRight = 3436738;
-	commoditiesText_1.tintBottomLeft = 3436738;
-	commoditiesText_1.text = "Consumables Durables Luxuries";
-	commoditiesText_1.fontSize = 44;
-	tradeUI.add(commoditiesText_1);
-
 	this.startButton = startButton;
 	this.startButtonText = startButtonText;
-	this.ui = ui;
 	this.durCapSquare = durCapSquare;
 	this.luxSquare = luxSquare;
 	this.durSquare = durSquare;
@@ -736,68 +609,57 @@ export default class UI extends Phaser.Scene {
 	this.submitButtonText = submitButtonText;
 	this.stage = stage;
 	this.stageText = stageText;
-	this.luxlights = luxlights;
+	this.buyButton = buyButton;
+	this.buyButtonText = buyButtonText;
+	this.sellButton = sellButton;
+	this.sellButtonText = sellButtonText;
+	this.noButton = noButton;
+	this.noButtonText = noButtonText;
+	this.yesButton = yesButton;
+	this.yesButtonText = yesButtonText;
+	this.ui = ui;
 	this.luxlight5 = luxlight5;
 	this.luxlight4 = luxlight4;
 	this.luxlight3 = luxlight3;
 	this.luxlight2 = luxlight2;
 	this.luxlight1 = luxlight1;
-	this.durlights = durlights;
+	this.luxlights = luxlights;
 	this.durlight5 = durlight5;
 	this.durlight4 = durlight4;
 	this.durlight3 = durlight3;
 	this.durlight2 = durlight2;
 	this.durlight1 = durlight1;
-	this.conlights = conlights;
+	this.durlights = durlights;
 	this.conlight5 = conlight5;
 	this.conlight4 = conlight4;
 	this.conlight3 = conlight3;
 	this.conlight2 = conlight2;
 	this.conlight1 = conlight1;
-	this.luxCapLights = luxCapLights;
+	this.conlights = conlights;
 	this.luxCapLight5 = luxCapLight5;
 	this.luxCapLight4 = luxCapLight4;
 	this.luxCapLight3 = luxCapLight3;
 	this.luxCapLight2 = luxCapLight2;
 	this.luxCapLight1 = luxCapLight1;
-	this.durCapLights = durCapLights;
+	this.luxCapLights = luxCapLights;
 	this.durCapLight5 = durCapLight5;
 	this.durCapLight4 = durCapLight4;
 	this.durCapLight3 = durCapLight3;
 	this.durCapLight2 = durCapLight2;
 	this.durCapLight1 = durCapLight1;
-	this.conCapLights = conCapLights;
+	this.durCapLights = durCapLights;
 	this.conCapLight5 = conCapLight5;
 	this.conCapLight4 = conCapLight4;
 	this.conCapLight3 = conCapLight3;
 	this.conCapLight2 = conCapLight2;
 	this.conCapLight1 = conCapLight1;
-	this.tradeUI = tradeUI;
-	this.tradeStage = tradeStage;
-	this.tradeStageText = tradeStageText;
-	this.capitalText_1 = capitalText_1;
-	this.time_1 = time_1;
-	this.submitButton_1 = submitButton_1;
-	this.rectangle = rectangle;
-	this.conCapSquare_1 = conCapSquare_1;
-	this.conSquare_1 = conSquare_1;
-	this.luxCapSquare_1 = luxCapSquare_1;
-	this.durSquare_1 = durSquare_1;
-	this.luxSquare_1 = luxSquare_1;
-	this.durCapSquare_1 = durCapSquare_1;
-	this.tradeMinus = tradeMinus;
-	this.tradePlus = tradePlus;
-	this.tradeLuxCapValText = tradeLuxCapValText;
-	this.tradeDurCapValText = tradeDurCapValText;
-	this.tradeConCapValText = tradeConCapValText;
-	this.tradeTime_ValText = tradeTime_ValText;
-	this.tradeDurValText = tradeDurValText;
-	this.tradeConValText = tradeConValText;
-	this.tradeLuxValText = tradeLuxValText;
-	this.commoditiesText_1 = commoditiesText_1;
+	this.conCapLights = conCapLights;
 
 	this.events.emit("scene-awake");
 }
+
+
+
 
   /** @type {Phaser.GameObjects.Text} */
   consValText;

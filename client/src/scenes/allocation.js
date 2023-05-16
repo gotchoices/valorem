@@ -35,7 +35,7 @@ export class allocationHandler {
       scene.rectangle_7,
     ]);
     scene.events.on("begin allocation", (data) => {
-      scene.tradeUI.visible = false;
+   
       scene.submitButtonText.visible = true;
       scene.ui.visible = true;
       scene.luxlights.visible = true;
@@ -275,7 +275,7 @@ export class allocationHandler {
             scene.tweens.add({
               targets: this.boxes.getChildren(),
               strokeColor: 0xffffff,
-              duration: 1000,
+              duration: 2000,
               onComplete: function () {
                 scene.events.emit("begin trading");
               },
