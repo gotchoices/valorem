@@ -28,7 +28,7 @@ class Level extends Phaser.Scene {
 		rectangle_1.fillColor = 4408131;
 
 		// startButton
-		const startButton = this.add.rectangle(458, 816, 350, 128);
+		const startButton = this.add.rectangle(457.75, 816, 350, 128);
 		startButton.name = "startButton";
 		startButton.scaleX = 2.393893045909517;
 		startButton.scaleY = 2.521037251429433;
@@ -36,7 +36,7 @@ class Level extends Phaser.Scene {
 		startButton.fillColor = 3436738;
 
 		// startButtonText
-		const startButtonText = this.add.bitmapText(70, 773, "__missing__", "click here to start");
+		const startButtonText = this.add.bitmapText(46.25, 773, "spaceCrusaders", "click here to start");
 		startButtonText.name = "startButtonText";
 		startButtonText.tintFill = true;
 		startButtonText.text = "click here to start";
@@ -75,7 +75,7 @@ class Level extends Phaser.Scene {
 		ui.add(durSquare);
 
 		// luxCapSquare
-		const luxCapSquare = this.add.rectangle(758, 1498, 128, 128);
+		const luxCapSquare = this.add.rectangle(758, 1497, 128, 128);
 		luxCapSquare.name = "luxCapSquare";
 		luxCapSquare.isFilled = true;
 		luxCapSquare.fillColor = 0;
@@ -84,7 +84,7 @@ class Level extends Phaser.Scene {
 		ui.add(luxCapSquare);
 
 		// conSquare
-		const conSquare = this.add.rectangle(122, 1180, 128, 128);
+		const conSquare = this.add.rectangle(122, 1179, 128, 128);
 		conSquare.name = "conSquare";
 		conSquare.isFilled = true;
 		conSquare.fillColor = 0;
@@ -93,7 +93,7 @@ class Level extends Phaser.Scene {
 		ui.add(conSquare);
 
 		// conCapSquare
-		const conCapSquare = this.add.rectangle(122, 1497, 128, 128);
+		const conCapSquare = this.add.rectangle(122, 1496, 128, 128);
 		conCapSquare.name = "conCapSquare";
 		conCapSquare.isFilled = true;
 		conCapSquare.fillColor = 0;
@@ -102,7 +102,7 @@ class Level extends Phaser.Scene {
 		ui.add(conCapSquare);
 
 		// rectangle_7
-		const rectangle_7 = this.add.rectangle(122, 967, 128, 128);
+		const rectangle_7 = this.add.rectangle(122, 966, 128, 128);
 		rectangle_7.isFilled = true;
 		rectangle_7.fillColor = 0;
 		rectangle_7.isStroked = true;
@@ -110,7 +110,7 @@ class Level extends Phaser.Scene {
 		ui.add(rectangle_7);
 
 		// commoditiesText
-		const commoditiesText = this.add.bitmapText(33, 1052, "__missing__", "Consumables Durables Luxuries");
+		const commoditiesText = this.add.bitmapText(33, 1051, "spaceCrusaders", "Consumables Durables Luxuries");
 		commoditiesText.name = "commoditiesText";
 		commoditiesText.tintFill = true;
 		commoditiesText.tintTopLeft = 3436738;
@@ -120,50 +120,50 @@ class Level extends Phaser.Scene {
 		commoditiesText.fontSize = 44;
 		ui.add(commoditiesText);
 
-		// consValText
-		const consValText = this.add.bitmapText(728, 1144, "__missing__", "0");
-		consValText.name = "consValText";
-		consValText.tintFill = true;
-		consValText.text = "0";
-		consValText.fontSize = 44;
-		ui.add(consValText);
-
-		// durValText
-		const durValText = this.add.bitmapText(114, 1145, "__missing__", "0");
-		durValText.name = "durValText";
-		durValText.tintFill = true;
-		durValText.text = "0";
-		durValText.fontSize = 44;
-		ui.add(durValText);
-
 		// luxValText
-		const luxValText = this.add.bitmapText(421, 1145, "__missing__", "0");
+		const luxValText = this.add.bitmapText(728, 1143, "spaceCrusaders", "0");
 		luxValText.name = "luxValText";
 		luxValText.tintFill = true;
 		luxValText.text = "0";
 		luxValText.fontSize = 44;
 		ui.add(luxValText);
 
+		// conValText
+		const conValText = this.add.bitmapText(114, 1144, "spaceCrusaders", "0");
+		conValText.name = "conValText";
+		conValText.tintFill = true;
+		conValText.text = "0";
+		conValText.fontSize = 44;
+		ui.add(conValText);
+
+		// durValText
+		const durValText = this.add.bitmapText(421, 1144, "spaceCrusaders", "0");
+		durValText.name = "durValText";
+		durValText.tintFill = true;
+		durValText.text = "0";
+		durValText.fontSize = 44;
+		ui.add(durValText);
+
 		// submitButton
-		const submitButton = this.add.rectangle(394, 965.3333129882812, 350, 128);
+		const submitButton = this.add.rectangle(394, 964.3333129882812, 350, 128);
 		submitButton.name = "submitButton";
 		submitButton.isFilled = true;
 		submitButton.fillColor = 3436738;
 		ui.add(submitButton);
 
-		// Time
-		const time = this.add.bitmapText(60, 836, "__missing__", "Time");
-		time.name = "Time";
-		time.tintFill = true;
-		time.tintTopLeft = 3436738;
-		time.tintTopRight = 3436738;
-		time.tintBottomLeft = 3436738;
-		time.text = "Time";
-		time.fontSize = 44;
-		ui.add(time);
+		// timeText
+		const timeText = this.add.bitmapText(60, 836, "spaceCrusaders", "Time");
+		timeText.name = "timeText";
+		timeText.tintFill = true;
+		timeText.tintTopLeft = 3436738;
+		timeText.tintTopRight = 3436738;
+		timeText.tintBottomLeft = 3436738;
+		timeText.text = "Time";
+		timeText.fontSize = 44;
+		ui.add(timeText);
 
 		// capitalText
-		const capitalText = this.add.bitmapText(26, 1361, "__missing__", "CONCAP      DURCAP       LUXCAP   ");
+		const capitalText = this.add.bitmapText(26, 1360, "spaceCrusaders", "CONCAP      DURCAP       LUXCAP   ");
 		capitalText.name = "capitalText";
 		capitalText.tintFill = true;
 		capitalText.tintTopLeft = 3436738;
@@ -174,7 +174,7 @@ class Level extends Phaser.Scene {
 		ui.add(capitalText);
 
 		// timeValText
-		const timeValText = this.add.bitmapText(102, 936, "__missing__", "0");
+		const timeValText = this.add.bitmapText(102, 935, "spaceCrusaders", "0");
 		timeValText.name = "timeValText";
 		timeValText.tintFill = true;
 		timeValText.text = "0";
@@ -182,7 +182,7 @@ class Level extends Phaser.Scene {
 		ui.add(timeValText);
 
 		// conCapValText
-		const conCapValText = this.add.bitmapText(83, 1467, "__missing__", "0");
+		const conCapValText = this.add.bitmapText(83, 1467, "spaceCrusaders", "0");
 		conCapValText.name = "conCapValText";
 		conCapValText.tintFill = true;
 		conCapValText.text = "0";
@@ -190,7 +190,7 @@ class Level extends Phaser.Scene {
 		ui.add(conCapValText);
 
 		// durCapValText
-		const durCapValText = this.add.bitmapText(417, 1454, "__missing__", "0");
+		const durCapValText = this.add.bitmapText(417, 1455, "spaceCrusaders", "0");
 		durCapValText.name = "durCapValText";
 		durCapValText.tintFill = true;
 		durCapValText.text = "0";
@@ -198,7 +198,7 @@ class Level extends Phaser.Scene {
 		ui.add(durCapValText);
 
 		// luxCapValText
-		const luxCapValText = this.add.bitmapText(736, 1473, "__missing__", "0");
+		const luxCapValText = this.add.bitmapText(736, 1474, "spaceCrusaders", "0");
 		luxCapValText.name = "luxCapValText";
 		luxCapValText.tintFill = true;
 		luxCapValText.text = "0";
@@ -206,7 +206,7 @@ class Level extends Phaser.Scene {
 		ui.add(luxCapValText);
 
 		// plus
-		const plus = this.add.bitmapText(604, 883.6666870117188, "__missing__", "+");
+		const plus = this.add.bitmapText(644, 884.6666870117188, "spaceCrusaders", "+");
 		plus.name = "plus";
 		plus.tintFill = true;
 		plus.tintTopLeft = 3436738;
@@ -217,7 +217,7 @@ class Level extends Phaser.Scene {
 		ui.add(plus);
 
 		// minus
-		const minus = this.add.bitmapText(749, 883.6666870117188, "__missing__", "-");
+		const minus = this.add.bitmapText(790, 882.6666870117188, "spaceCrusaders", "-");
 		minus.name = "minus";
 		minus.tintFill = true;
 		minus.tintTopLeft = 3436738;
@@ -228,14 +228,121 @@ class Level extends Phaser.Scene {
 		ui.add(minus);
 
 		// submitButtonText
-		const submitButtonText = this.add.bitmapText(254, 928.3333129882812, "__missing__", "submit");
+		const submitButtonText = this.add.bitmapText(255, 927.3333129882812, "spaceCrusaders", "submit");
 		submitButtonText.name = "submitButtonText";
-		submitButtonText.scaleX = 0;
-		submitButtonText.scaleY = 0;
 		submitButtonText.tintFill = true;
 		submitButtonText.text = "submit";
 		submitButtonText.fontSize = 72;
 		ui.add(submitButtonText);
+
+		// stage
+		const stage = this.add.rectangle(455, 409, 145, 145);
+		stage.name = "stage";
+		stage.scaleX = 5.827964926609718;
+		stage.scaleY = 5.295269907558686;
+		stage.isFilled = true;
+		stage.fillColor = 0;
+		stage.isStroked = true;
+		stage.strokeColor = 10329501;
+		stage.lineWidth = 4;
+		ui.add(stage);
+
+		// stageText
+		const stageText = this.add.bitmapText(475, 258, "spaceCrusaders", "Allocate \nTime");
+		stageText.name = "stageText";
+		stageText.setOrigin(0.5, 0);
+		stageText.tintFill = true;
+		stageText.tintTopLeft = 3436738;
+		stageText.tintTopRight = 3436738;
+		stageText.tintBottomLeft = 3436738;
+		stageText.text = "Allocate \nTime";
+		stageText.fontSize = 150;
+		stageText.align = 1;
+		ui.add(stageText);
+
+		// buyButton
+		const buyButton = this.add.rectangle(79, 951, 124, 128);
+		buyButton.name = "buyButton";
+		buyButton.visible = false;
+		buyButton.isFilled = true;
+		buyButton.fillColor = 12457024;
+		buyButton.isStroked = true;
+		buyButton.lineWidth = 4;
+		ui.add(buyButton);
+
+		// buyButtonText
+		const buyButtonText = this.add.bitmapText(31, 927, "spaceCrusaders", "Buy");
+		buyButtonText.name = "buyButtonText";
+		buyButtonText.visible = false;
+		buyButtonText.tintFill = true;
+		buyButtonText.tintTopLeft = 3436738;
+		buyButtonText.tintBottomRight = 3436738;
+		buyButtonText.text = "Buy";
+		buyButtonText.fontSize = 48;
+		ui.add(buyButtonText);
+
+		// sellButton
+		const sellButton = this.add.rectangle(237, 951, 124, 128);
+		sellButton.name = "sellButton";
+		sellButton.visible = false;
+		sellButton.isFilled = true;
+		sellButton.fillColor = 12457024;
+		sellButton.isStroked = true;
+		sellButton.lineWidth = 4;
+		ui.add(sellButton);
+
+		// sellButtonText
+		const sellButtonText = this.add.bitmapText(189, 927, "spaceCrusaders", "Sell");
+		sellButtonText.name = "sellButtonText";
+		sellButtonText.visible = false;
+		sellButtonText.tintFill = true;
+		sellButtonText.tintTopLeft = 3436738;
+		sellButtonText.tintBottomRight = 3436738;
+		sellButtonText.text = "Sell";
+		sellButtonText.fontSize = 48;
+		ui.add(sellButtonText);
+
+		// noButton
+		const noButton = this.add.rectangle(540, 951, 124, 128);
+		noButton.name = "noButton";
+		noButton.visible = false;
+		noButton.isFilled = true;
+		noButton.fillColor = 16725558;
+		noButton.isStroked = true;
+		noButton.lineWidth = 4;
+		ui.add(noButton);
+
+		// noButtonText
+		const noButtonText = this.add.bitmapText(492, 927, "spaceCrusaders", "no");
+		noButtonText.name = "noButtonText";
+		noButtonText.visible = false;
+		noButtonText.tintFill = true;
+		noButtonText.tintTopLeft = 3436738;
+		noButtonText.tintBottomRight = 3436738;
+		noButtonText.text = "no";
+		noButtonText.fontSize = 48;
+		ui.add(noButtonText);
+
+		// yesButton
+		const yesButton = this.add.rectangle(382, 951, 124, 128);
+		yesButton.name = "yesButton";
+		yesButton.visible = false;
+		yesButton.isFilled = true;
+		yesButton.fillColor = 4127806;
+		yesButton.isStroked = true;
+		yesButton.lineWidth = 4;
+		ui.add(yesButton);
+
+		// yesButtonText
+		const yesButtonText = this.add.bitmapText(334, 927, "spaceCrusaders", "yes");
+		yesButtonText.name = "yesButtonText";
+		yesButtonText.visible = false;
+		yesButtonText.tintFill = true;
+		yesButtonText.tintTopLeft = 3436738;
+		yesButtonText.tintBottomRight = 3436738;
+		yesButtonText.text = "yes";
+		yesButtonText.fontSize = 48;
+		ui.add(yesButtonText);
 
 		// luxlights
 		const luxlights = this.add.container(721, 1277);
@@ -246,30 +353,35 @@ class Level extends Phaser.Scene {
 		const luxlight5 = this.add.ellipse(80, 0, 10, 10);
 		luxlight5.name = "luxlight5";
 		luxlight5.isFilled = true;
+		luxlight5.fillColor = 16711680;
 		luxlights.add(luxlight5);
 
 		// luxlight4
 		const luxlight4 = this.add.ellipse(60, 0, 10, 10);
 		luxlight4.name = "luxlight4";
 		luxlight4.isFilled = true;
+		luxlight4.fillColor = 16711680;
 		luxlights.add(luxlight4);
 
 		// luxlight3
 		const luxlight3 = this.add.ellipse(40, 0, 10, 10);
 		luxlight3.name = "luxlight3";
 		luxlight3.isFilled = true;
+		luxlight3.fillColor = 16711680;
 		luxlights.add(luxlight3);
 
 		// luxlight2
 		const luxlight2 = this.add.ellipse(20, 0, 10, 10);
 		luxlight2.name = "luxlight2";
 		luxlight2.isFilled = true;
+		luxlight2.fillColor = 16711680;
 		luxlights.add(luxlight2);
 
 		// luxlight1
 		const luxlight1 = this.add.ellipse(0, 0, 10, 10);
 		luxlight1.name = "luxlight1";
 		luxlight1.isFilled = true;
+		luxlight1.fillColor = 16711680;
 		luxlights.add(luxlight1);
 
 		// durlights
@@ -281,30 +393,35 @@ class Level extends Phaser.Scene {
 		const durlight5 = this.add.ellipse(80, 0, 10, 10);
 		durlight5.name = "durlight5";
 		durlight5.isFilled = true;
+		durlight5.fillColor = 16711680;
 		durlights.add(durlight5);
 
 		// durlight4
 		const durlight4 = this.add.ellipse(60, 0, 10, 10);
 		durlight4.name = "durlight4";
 		durlight4.isFilled = true;
+		durlight4.fillColor = 16711680;
 		durlights.add(durlight4);
 
 		// durlight3
 		const durlight3 = this.add.ellipse(40, 0, 10, 10);
 		durlight3.name = "durlight3";
 		durlight3.isFilled = true;
+		durlight3.fillColor = 16711680;
 		durlights.add(durlight3);
 
 		// durlight2
 		const durlight2 = this.add.ellipse(20, 0, 10, 10);
 		durlight2.name = "durlight2";
 		durlight2.isFilled = true;
+		durlight2.fillColor = 16711680;
 		durlights.add(durlight2);
 
 		// durlight1
 		const durlight1 = this.add.ellipse(0, 0, 10, 10);
 		durlight1.name = "durlight1";
 		durlight1.isFilled = true;
+		durlight1.fillColor = 16711680;
 		durlights.add(durlight1);
 
 		// conlights
@@ -316,30 +433,35 @@ class Level extends Phaser.Scene {
 		const conlight5 = this.add.ellipse(80, 0, 10, 10);
 		conlight5.name = "conlight5";
 		conlight5.isFilled = true;
+		conlight5.fillColor = 16711680;
 		conlights.add(conlight5);
 
 		// conlight4
 		const conlight4 = this.add.ellipse(60, 0, 10, 10);
 		conlight4.name = "conlight4";
 		conlight4.isFilled = true;
+		conlight4.fillColor = 16711680;
 		conlights.add(conlight4);
 
 		// conlight3
 		const conlight3 = this.add.ellipse(40, 0, 10, 10);
 		conlight3.name = "conlight3";
 		conlight3.isFilled = true;
+		conlight3.fillColor = 16711680;
 		conlights.add(conlight3);
 
 		// conlight2
 		const conlight2 = this.add.ellipse(20, 0, 10, 10);
 		conlight2.name = "conlight2";
 		conlight2.isFilled = true;
+		conlight2.fillColor = 16711680;
 		conlights.add(conlight2);
 
 		// conlight1
 		const conlight1 = this.add.ellipse(0, 0, 10, 10);
 		conlight1.name = "conlight1";
 		conlight1.isFilled = true;
+		conlight1.fillColor = 16711680;
 		conlights.add(conlight1);
 
 		// luxCapLights
@@ -351,30 +473,35 @@ class Level extends Phaser.Scene {
 		const luxCapLight5 = this.add.ellipse(80, 0, 10, 10);
 		luxCapLight5.name = "luxCapLight5";
 		luxCapLight5.isFilled = true;
+		luxCapLight5.fillColor = 16711680;
 		luxCapLights.add(luxCapLight5);
 
 		// luxCapLight4
 		const luxCapLight4 = this.add.ellipse(60, 0, 10, 10);
 		luxCapLight4.name = "luxCapLight4";
 		luxCapLight4.isFilled = true;
+		luxCapLight4.fillColor = 16711680;
 		luxCapLights.add(luxCapLight4);
 
 		// luxCapLight3
 		const luxCapLight3 = this.add.ellipse(40, 0, 10, 10);
 		luxCapLight3.name = "luxCapLight3";
 		luxCapLight3.isFilled = true;
+		luxCapLight3.fillColor = 16711680;
 		luxCapLights.add(luxCapLight3);
 
 		// luxCapLight2
 		const luxCapLight2 = this.add.ellipse(20, 0, 10, 10);
 		luxCapLight2.name = "luxCapLight2";
 		luxCapLight2.isFilled = true;
+		luxCapLight2.fillColor = 16711680;
 		luxCapLights.add(luxCapLight2);
 
 		// luxCapLight1
 		const luxCapLight1 = this.add.ellipse(0, 0, 10, 10);
 		luxCapLight1.name = "luxCapLight1";
 		luxCapLight1.isFilled = true;
+		luxCapLight1.fillColor = 16711680;
 		luxCapLights.add(luxCapLight1);
 
 		// durCapLights
@@ -386,30 +513,35 @@ class Level extends Phaser.Scene {
 		const durCapLight5 = this.add.ellipse(80, 0, 10, 10);
 		durCapLight5.name = "durCapLight5";
 		durCapLight5.isFilled = true;
+		durCapLight5.fillColor = 16711680;
 		durCapLights.add(durCapLight5);
 
 		// durCapLight4
 		const durCapLight4 = this.add.ellipse(60, 0, 10, 10);
 		durCapLight4.name = "durCapLight4";
 		durCapLight4.isFilled = true;
+		durCapLight4.fillColor = 16711680;
 		durCapLights.add(durCapLight4);
 
 		// durCapLight3
 		const durCapLight3 = this.add.ellipse(40, 0, 10, 10);
 		durCapLight3.name = "durCapLight3";
 		durCapLight3.isFilled = true;
+		durCapLight3.fillColor = 16711680;
 		durCapLights.add(durCapLight3);
 
 		// durCapLight2
 		const durCapLight2 = this.add.ellipse(20, 0, 10, 10);
 		durCapLight2.name = "durCapLight2";
 		durCapLight2.isFilled = true;
+		durCapLight2.fillColor = 16711680;
 		durCapLights.add(durCapLight2);
 
 		// durCapLight1
 		const durCapLight1 = this.add.ellipse(0, 0, 10, 10);
 		durCapLight1.name = "durCapLight1";
 		durCapLight1.isFilled = true;
+		durCapLight1.fillColor = 16711680;
 		durCapLights.add(durCapLight1);
 
 		// conCapLights
@@ -421,30 +553,35 @@ class Level extends Phaser.Scene {
 		const conCapLight5 = this.add.ellipse(80, 0, 10, 10);
 		conCapLight5.name = "conCapLight5";
 		conCapLight5.isFilled = true;
+		conCapLight5.fillColor = 16711680;
 		conCapLights.add(conCapLight5);
 
 		// conCapLight4
 		const conCapLight4 = this.add.ellipse(60, 0, 10, 10);
 		conCapLight4.name = "conCapLight4";
 		conCapLight4.isFilled = true;
+		conCapLight4.fillColor = 16711680;
 		conCapLights.add(conCapLight4);
 
 		// conCapLight3
 		const conCapLight3 = this.add.ellipse(40, 0, 10, 10);
 		conCapLight3.name = "conCapLight3";
 		conCapLight3.isFilled = true;
+		conCapLight3.fillColor = 16711680;
 		conCapLights.add(conCapLight3);
 
 		// conCapLight2
 		const conCapLight2 = this.add.ellipse(20, 0, 10, 10);
 		conCapLight2.name = "conCapLight2";
 		conCapLight2.isFilled = true;
+		conCapLight2.fillColor = 16711680;
 		conCapLights.add(conCapLight2);
 
 		// conCapLight1
 		const conCapLight1 = this.add.ellipse(0, 0, 10, 10);
 		conCapLight1.name = "conCapLight1";
 		conCapLight1.isFilled = true;
+		conCapLight1.fillColor = 16711680;
 		conCapLights.add(conCapLight1);
 
 		this.startButton = startButton;
@@ -457,11 +594,11 @@ class Level extends Phaser.Scene {
 		this.conCapSquare = conCapSquare;
 		this.rectangle_7 = rectangle_7;
 		this.commoditiesText = commoditiesText;
-		this.consValText = consValText;
-		this.durValText = durValText;
 		this.luxValText = luxValText;
+		this.conValText = conValText;
+		this.durValText = durValText;
 		this.submitButton = submitButton;
-		this.time = time;
+		this.timeText = timeText;
 		this.capitalText = capitalText;
 		this.timeValText = timeValText;
 		this.conCapValText = conCapValText;
@@ -470,6 +607,16 @@ class Level extends Phaser.Scene {
 		this.plus = plus;
 		this.minus = minus;
 		this.submitButtonText = submitButtonText;
+		this.stage = stage;
+		this.stageText = stageText;
+		this.buyButton = buyButton;
+		this.buyButtonText = buyButtonText;
+		this.sellButton = sellButton;
+		this.sellButtonText = sellButtonText;
+		this.noButton = noButton;
+		this.noButtonText = noButtonText;
+		this.yesButton = yesButton;
+		this.yesButtonText = yesButtonText;
 		this.ui = ui;
 		this.luxlight5 = luxlight5;
 		this.luxlight4 = luxlight4;
@@ -532,15 +679,15 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.BitmapText} */
 	commoditiesText;
 	/** @type {Phaser.GameObjects.BitmapText} */
-	consValText;
+	luxValText;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	conValText;
 	/** @type {Phaser.GameObjects.BitmapText} */
 	durValText;
-	/** @type {Phaser.GameObjects.BitmapText} */
-	luxValText;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	submitButton;
 	/** @type {Phaser.GameObjects.BitmapText} */
-	time;
+	timeText;
 	/** @type {Phaser.GameObjects.BitmapText} */
 	capitalText;
 	/** @type {Phaser.GameObjects.BitmapText} */
@@ -557,6 +704,26 @@ class Level extends Phaser.Scene {
 	minus;
 	/** @type {Phaser.GameObjects.BitmapText} */
 	submitButtonText;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	stage;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	stageText;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	buyButton;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	buyButtonText;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	sellButton;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	sellButtonText;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	noButton;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	noButtonText;
+	/** @type {Phaser.GameObjects.Rectangle} */
+	yesButton;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	yesButtonText;
 	/** @type {Phaser.GameObjects.Layer} */
 	ui;
 	/** @type {Phaser.GameObjects.Ellipse} */
