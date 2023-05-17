@@ -1,7 +1,6 @@
 export class tradeHandler {
   constructor(scene, room) {
-    //create variables for handling UI
-    this.trading = true;
+    this.trading = false;
     this.selected = " ";
     this.conBuy = 0;
     this.durBuy = 0;
@@ -78,12 +77,10 @@ export class tradeHandler {
           " luxCap";
       },
     });
-
-    //listen for activation of trading UI elements
     scene.events.on(
       "begin trading",
       function () {
-      
+        this.submission = false;
         scene.time.addEvent({
           delay: 2000,
           callback: () => {
@@ -95,8 +92,6 @@ export class tradeHandler {
             scene.stageText.setText(this.buyString + this.sellString);
           },
         });
-
-        //show and hide UI buttons
         scene.timeText.visible = false;
         scene.rectangle_7.visible = false;
         scene.submitButton.visible = false;
@@ -109,10 +104,7 @@ export class tradeHandler {
         scene.buyButtonText.visible = true;
         scene.sellButton.visible = true;
         scene.sellButtonText.visible = true;
-
-        //set top console text
         scene.stageText.setText("trade \n holdings");
-//determine buy/sell, holdings, and amount
         scene.buyButton.setInteractive().on("pointerdown", () => {
           this.action = "Buy";
         });
@@ -137,7 +129,6 @@ export class tradeHandler {
         scene.conSquare.setInteractive().on("pointerdown", () => {
           this.selected = "con";
         });
-        //set variables for buy/sell and amount
         scene.plus.setInteractive().on("pointerdown", () => {
           if (this.action == "Buy") {
             if (this.selected == "con") {
@@ -180,7 +171,6 @@ export class tradeHandler {
             }
           }
         });
-        //configure + and - buttons
         scene.minus.setInteractive().on("pointerdown", () => {
           if (this.action == "Buy") {
             if (this.selected == "con") {
@@ -237,8 +227,6 @@ export class tradeHandler {
             this.luxCapSell
           );
         });
-
-        //set UI button colors if not submitting a trade
         scene.input.on("pointerdown", (pointer) => {
           let rec = new Phaser.Geom.Rectangle(
             scene.yesButton.x,
@@ -280,8 +268,6 @@ export class tradeHandler {
             if (this.action == "Sell") {
               scene.sellButton.setStrokeStyle(4, 0x00ff00);
             }
-
-            //display active trade configuration
             this.buyString =
               "Buying:\n" +
               this.conBuy +
@@ -314,8 +300,9 @@ export class tradeHandler {
             scene.stageText.setText(this.buyString + this.sellString);
           }
         });
-//submit trade configuration to "server"
+
         scene.yesButton.setInteractive().on("pointerdown", () => {
+          this.trading = true;
           scene.events.emit("trade", {
             buy: {
               conBuy: this.conBuy,
@@ -334,111 +321,90 @@ export class tradeHandler {
               luxCapSell: this.luxCapSell,
             },
           });
-
-          //visually acknowledge trade submission
           scene.stageText
             .setFontSize(72)
             .setCenterAlign()
             .setText("trade order\nsent");
         });
-//respond to trade requests
-        scene.events.on("trade", function (data) {
-          this.trading == true;
-          scene.time.addEvent({
-            delay: 2000,
-            callback: () => {
-              console.log(data);
-              let buy = {
-                con: data.sell.conSell,
-                dur: data.sell.durSell,
-                lux: data.sell.luxSell,
-                conCap: data.sell.conCapSell,
-                durCap: data.sell.durCapSell,
-                luxCap: data.sell.luxCapSell,
-              };
-              let sell = {
-                con: data.buy.conBuy,
-                dur: data.buy.durBuy,
-                lux: data.buy.luxBuy,
-                conCap: data.buy.conCapBuy,
-                durCap: data.buy.durCapBuy,
-                luxCap: data.buy.luxCapBuy,
-              };
-              //create a random trade and display on screen
-           
 
-              let buyAmount = 0;
-              let sellAmount = 0;
-              let buying = " ";
-              let selling = " ";
-              let buyKeys = Object.keys(buy);
-              let sellKeys = Object.keys(sell);
-              let buyIndex = Math.floor(Math.random() * buyKeys.length);
-              let sellIndex = Math.floor(Math.random() * sellKeys.length);
-              buying = buyKeys[buyIndex];
-              selling = sellKeys[sellIndex];
-             
-             //eliminate trades of 0 units
-              while (buy[buying] == 0) {
-                buyIndex = Math.floor(Math.random() * buyKeys.length);
-                buying = buyKeys[buyIndex];
-              }
-        
+        scene.events.on(
+          "trade",
+          function (data) {
+            if (this.trading == true) {
+              scene.time.addEvent({
+                delay: 2000,
+                callback: () => {
+                  console.log(data);
+                  let buy = {
+                    con: data.sell.conSell,
+                    dur: data.sell.durSell,
+                    lux: data.sell.luxSell,
+                    conCap: data.sell.conCapSell,
+                    durCap: data.sell.durCapSell,
+                    luxCap: data.sell.luxCapSell,
+                  };
+                  let sell = {
+                    con: data.buy.conBuy,
+                    dur: data.buy.durBuy,
+                    lux: data.buy.luxBuy,
+                    conCap: data.buy.conCapBuy,
+                    durCap: data.buy.durCapBuy,
+                    luxCap: data.buy.luxCapBuy,
+                  };
+                  //check values of each buy and sell and push !0 values to arrays
+                  let buyArray = [];
+                  let sellArray = [];
+                  let tradeArray = [];
+                  let tradeString = "";
+                  for (let key in buy) {
+                    if (buy[key] != 0) {
+                      buyArray.push(key);
+                    }
+                  }
+                  for (let key in sell) {
+                    if (sell[key] != 0) {
+                      sellArray.push(key);
+                    }
+                  }
 
-              while (sell[selling] == 0) {
-                sellIndex = Math.floor(Math.random() * sellKeys.length);
-                selling = sellKeys[sellIndex];
-              }
+                  //cycle through each buy and sell, create a trade for each,
+                  //push to tradeArray
+                  for (let i = 0; i < buyArray.length; i++) {
+                    for (let j = 0; j < sellArray.length; j++) {
+                      let trade = {
+                        buy: buyArray[i],
+                        sell: sellArray[j],
+                        amount: Math.min(buy[buyArray[i]], sell[sellArray[j]]),
+                      };
+                      tradeArray.push(trade);
+                      tradeString +=
+                        "Trade " +
+                        trade.amount +
+                        " " +
+                        trade.buy +
+                        " for " +
+                        trade.amount +
+                        " " +
+                        trade.sell +
+                        "?\n";
+                    }
+                  }
 
-              //eliminate some edge cases
-              buyAmount = Math.floor(Math.random() * buy[buying]);
-              sellAmount = Math.floor(Math.random() * sell[selling]);
-              if (buyAmount == 0) {
-                buyAmount = 1;
-              }
-              if (sellAmount == 0) {
-                sellAmount = 1;
-              }
-              if (buyAmount > sellAmount) {
-                buyAmount = sellAmount;
-              }
-              if (buyAmount < sellAmount) {
-                sellAmount = buyAmount;
-              }
-              //display trade in stage.Text
+                  //store trades and post them to stageText
 
-              let buyString =
-                "Trade " +
-                buyAmount +
-                " \n" +
-                buying +
-                " for \n" +
-                sellAmount +
-                " " +
-                selling +
-                "?";
-              scene.stageText.setText(buyString);
-              scene.yesButton.visible = true;
-              scene.yesButtonText.visible = true;
-              scene.noButton.visible = true;
-              scene.noButtonText.visible = true;
+                  //display trade in stage.Text
 
-              //respond to trades, this is not finished
-              scene.yesButton.setInteractive().on("pointerdown", () => {
-                scene.events.emit("trade confirm", {
-                  buyAmount: buyAmount,
-                  buy: buy,
-                  sellAmount: sellAmount,
-                  sell: sell,
-                });
-                scene.stageText
-                  .setFontSize(72)
-                  .setCenterAlign()
-                  .setText(buyString);
+                  scene.stageText
+                    .setFontSize(72)
+                    .setLeftAlign()
+                    .setMaxWidth(scene.stage.width - 10)
+                    .setText(tradeString);
+                },
               });
-            },
-          });
-        });
+            }
+          },
+          this
+        );
       },
       this
     );

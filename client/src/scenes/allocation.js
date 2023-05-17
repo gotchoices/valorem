@@ -35,8 +35,13 @@ export class allocationHandler {
       scene.conCapSquare,
       scene.rectangle_7,
     ]);
-    scene.events.on("begin allocation", (data) => {
-  scene.stageText.setPosition(475, 258).setFontSize(150).setCenterAlign().setText("Allocate \nTime");
+
+    room.onMessage("begin allocation", (data) => {
+      scene.stageText
+        .setPosition(475, 258)
+        .setFontSize(150)
+        .setCenterAlign()
+        .setText("Allocate \nTime");
       scene.submitButtonText.visible = true;
       scene.ui.visible = true;
       scene.luxlights.visible = true;
@@ -46,7 +51,7 @@ export class allocationHandler {
       scene.durCapLights.visible = true;
       scene.luxCapLights.visible = true;
       scene.submitButtonText.setDepth(99);
-//determine which box is selected
+      //determine which box is selected
       scene.conSquare.setInteractive().on("pointerdown", () => {
         this.selected = "con";
       });
@@ -66,7 +71,7 @@ export class allocationHandler {
       scene.luxCapSquare.setInteractive().on("pointerdown", () => {
         this.selected = "luxCap";
       });
-//manage click on + and - buttons
+      //manage click on + and - buttons
       scene.plus.setInteractive().on("pointerdown", () => {
         if (this.allocated < 5) {
           if (this.selected == "con" && this.conAllocated < 5) {
@@ -135,7 +140,7 @@ export class allocationHandler {
           }
         }
       });
-//display selected holding
+      //display selected holding
       scene.input.on("pointerdown", () => {
         scene.conSquare.setStrokeStyle(4, 0xffffff);
         scene.durSquare.setStrokeStyle(4, 0xffffff);
@@ -203,41 +208,12 @@ export class allocationHandler {
           }
         }
       });
-//send submission to "server" for processing
+      //send submission to "server" for processing
       let submission = [scene.submitButton, scene.submitButtonText];
       submission.forEach((item) => {
         item.setInteractive().on(
           "pointerdown",
           () => {
-            //adjust all values based on allocation
-            this.conCapVal += this.conCapAllocated;
-            this.luxCapVal += this.luxCapAllocated;
-            this.durCapVal += this.durCapAllocated;
-            scene.conCapValText.setText(this.conCapVal);
-            scene.luxCapValText.setText(this.luxCapVal);
-            scene.durCapValText.setText(this.durCapVal);
-
-            this.luxVal += 1 + (this.luxAllocated * 3 * this.luxCapVal) / 5;
-            this.conVal += 1 + (this.conAllocated * 3 * this.conCapVal) / 5;
-            this.durVal += 1 + (this.durAllocated * 3 * this.durCapVal) / 5;
-            scene.luxValText.setText(this.luxVal);
-            scene.conValText.setText(this.conVal);
-            scene.durValText.setText(this.durVal);
-
-            scene.conCapVal = this.conCapVal;
-            scene.durCapVal = this.durCapVal;
-            scene.luxCapVal = this.luxCapVal;
-            scene.conVal = this.conVal;
-            scene.durVal = this.durVal;
-            scene.luxVal = this.luxVal;
-
-            this.allocated = 0;
-            this.conAllocated = 0;
-            this.durAllocated = 0;
-            this.luxAllocated = 0;
-            this.conCapAllocated = 0;
-            this.durCapAllocated = 0;
-            this.luxCapAllocated = 0;
             //disable all interactive elements
             scene.conSquare
               .removeListener("pointerdown")
@@ -272,16 +248,23 @@ export class allocationHandler {
             scene.submitButtonText
               .removeListener("pointerdown")
               .disableInteractive();
-        
 
             scene.input.removeListener("pointerdown");
-           //flash boxes to indicate end of allocation phase
+            //flash boxes to indicate end of allocation phase
             scene.tweens.add({
               targets: this.boxes.getChildren(),
               strokeColor: 0xffffff,
               duration: 2000,
               onComplete: function () {
-                scene.events.emit("begin trading");
+                room.send("allocation", {
+                  con: this.conAllocated,
+                  dur: this.durAllocated,
+                  lux: this.luxAllocated,
+                  conCap: this.conCapAllocated,
+                  durCap: this.durCapAllocated,
+                  luxCap: this.luxCapAllocated,
+                });
+                scene.stageText.setText("allocation\nsent");
               },
             });
           },
