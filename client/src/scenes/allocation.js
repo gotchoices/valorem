@@ -1,5 +1,6 @@
 export class allocationHandler {
   constructor(scene, room) {
+    //set variables to control UI
     this.conVal = 0;
     this.durVal = 0;
     this.luxVal = 0;
@@ -24,7 +25,7 @@ export class allocationHandler {
     scene.luxCapValText.setText(this.luxCapVal);
     scene.conCapValText.setText(this.conCapVal);
     this.boxes = scene.add.group();
-    // add rectangles 8 6 4 5 3 2 to group
+    // add rectangles to group
     this.boxes.addMultiple([
       scene.luxSquare,
       scene.durSquare,
@@ -35,7 +36,7 @@ export class allocationHandler {
       scene.rectangle_7,
     ]);
     scene.events.on("begin allocation", (data) => {
-   
+  scene.stageText.setPosition(475, 258).setFontSize(150).setCenterAlign().setText("Allocate \nTime");
       scene.submitButtonText.visible = true;
       scene.ui.visible = true;
       scene.luxlights.visible = true;
@@ -45,7 +46,7 @@ export class allocationHandler {
       scene.durCapLights.visible = true;
       scene.luxCapLights.visible = true;
       scene.submitButtonText.setDepth(99);
-
+//determine which box is selected
       scene.conSquare.setInteractive().on("pointerdown", () => {
         this.selected = "con";
       });
@@ -65,7 +66,7 @@ export class allocationHandler {
       scene.luxCapSquare.setInteractive().on("pointerdown", () => {
         this.selected = "luxCap";
       });
-
+//manage click on + and - buttons
       scene.plus.setInteractive().on("pointerdown", () => {
         if (this.allocated < 5) {
           if (this.selected == "con" && this.conAllocated < 5) {
@@ -134,7 +135,7 @@ export class allocationHandler {
           }
         }
       });
-
+//display selected holding
       scene.input.on("pointerdown", () => {
         scene.conSquare.setStrokeStyle(4, 0xffffff);
         scene.durSquare.setStrokeStyle(4, 0xffffff);
@@ -161,6 +162,7 @@ export class allocationHandler {
         if (this.selected == "lux") {
           scene.luxSquare.setStrokeStyle(4, 0x00ff00);
         }
+        //manage lights, right now they are backwards
         let conlights = scene.conlights.getAll();
         let durlights = scene.durlights.getAll();
         let luxlights = scene.luxlights.getAll();
@@ -201,7 +203,7 @@ export class allocationHandler {
           }
         }
       });
-
+//send submission to "server" for processing
       let submission = [scene.submitButton, scene.submitButtonText];
       submission.forEach((item) => {
         item.setInteractive().on(
@@ -236,6 +238,7 @@ export class allocationHandler {
             this.conCapAllocated = 0;
             this.durCapAllocated = 0;
             this.luxCapAllocated = 0;
+            //disable all interactive elements
             scene.conSquare
               .removeListener("pointerdown")
               .disableInteractive()
@@ -269,9 +272,10 @@ export class allocationHandler {
             scene.submitButtonText
               .removeListener("pointerdown")
               .disableInteractive();
-            console.log(scene.conSquare);
+        
 
             scene.input.removeListener("pointerdown");
+           //flash boxes to indicate end of allocation phase
             scene.tweens.add({
               targets: this.boxes.getChildren(),
               strokeColor: 0xffffff,

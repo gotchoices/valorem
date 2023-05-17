@@ -1,5 +1,6 @@
 export class tradeHandler {
   constructor(scene, room) {
+    //create variables for handling UI
     this.trading = true;
     this.selected = " ";
     this.conBuy = 0;
@@ -77,10 +78,12 @@ export class tradeHandler {
           " luxCap";
       },
     });
+
+    //listen for activation of trading UI elements
     scene.events.on(
       "begin trading",
       function () {
-        this.submission = false;
+      
         scene.time.addEvent({
           delay: 2000,
           callback: () => {
@@ -92,6 +95,8 @@ export class tradeHandler {
             scene.stageText.setText(this.buyString + this.sellString);
           },
         });
+
+        //show and hide UI buttons
         scene.timeText.visible = false;
         scene.rectangle_7.visible = false;
         scene.submitButton.visible = false;
@@ -104,7 +109,10 @@ export class tradeHandler {
         scene.buyButtonText.visible = true;
         scene.sellButton.visible = true;
         scene.sellButtonText.visible = true;
+
+        //set top console text
         scene.stageText.setText("trade \n holdings");
+//determine buy/sell, holdings, and amount
         scene.buyButton.setInteractive().on("pointerdown", () => {
           this.action = "Buy";
         });
@@ -129,6 +137,7 @@ export class tradeHandler {
         scene.conSquare.setInteractive().on("pointerdown", () => {
           this.selected = "con";
         });
+        //set variables for buy/sell and amount
         scene.plus.setInteractive().on("pointerdown", () => {
           if (this.action == "Buy") {
             if (this.selected == "con") {
@@ -171,6 +180,7 @@ export class tradeHandler {
             }
           }
         });
+        //configure + and - buttons
         scene.minus.setInteractive().on("pointerdown", () => {
           if (this.action == "Buy") {
             if (this.selected == "con") {
@@ -227,6 +237,8 @@ export class tradeHandler {
             this.luxCapSell
           );
         });
+
+        //set UI button colors if not submitting a trade
         scene.input.on("pointerdown", (pointer) => {
           let rec = new Phaser.Geom.Rectangle(
             scene.yesButton.x,
@@ -268,6 +280,8 @@ export class tradeHandler {
             if (this.action == "Sell") {
               scene.sellButton.setStrokeStyle(4, 0x00ff00);
             }
+
+            //display active trade configuration
             this.buyString =
               "Buying:\n" +
               this.conBuy +
@@ -300,7 +314,7 @@ export class tradeHandler {
             scene.stageText.setText(this.buyString + this.sellString);
           }
         });
-
+//submit trade configuration to "server"
         scene.yesButton.setInteractive().on("pointerdown", () => {
           scene.events.emit("trade", {
             buy: {
@@ -320,12 +334,14 @@ export class tradeHandler {
               luxCapSell: this.luxCapSell,
             },
           });
+
+          //visually acknowledge trade submission
           scene.stageText
             .setFontSize(72)
             .setCenterAlign()
             .setText("trade order\nsent");
         });
-
+//respond to trade requests
         scene.events.on("trade", function (data) {
           this.trading == true;
           scene.time.addEvent({
@@ -348,7 +364,8 @@ export class tradeHandler {
                 durCap: data.buy.durCapBuy,
                 luxCap: data.buy.luxCapBuy,
               };
-              //create a random trade using a !=0 sell and a !=0 buy, send display "Buy x BUY for y SELL"to scene.stageText
+              //create a random trade and display on screen
+           
 
               let buyAmount = 0;
               let sellAmount = 0;
@@ -360,16 +377,20 @@ export class tradeHandler {
               let sellIndex = Math.floor(Math.random() * sellKeys.length);
               buying = buyKeys[buyIndex];
               selling = sellKeys[sellIndex];
+             
+             //eliminate trades of 0 units
               while (buy[buying] == 0) {
                 buyIndex = Math.floor(Math.random() * buyKeys.length);
                 buying = buyKeys[buyIndex];
               }
-              console.log(buying, buy);
+        
 
               while (sell[selling] == 0) {
                 sellIndex = Math.floor(Math.random() * sellKeys.length);
                 selling = sellKeys[sellIndex];
               }
+
+              //eliminate some edge cases
               buyAmount = Math.floor(Math.random() * buy[buying]);
               sellAmount = Math.floor(Math.random() * sell[selling]);
               if (buyAmount == 0) {
@@ -401,6 +422,8 @@ export class tradeHandler {
               scene.yesButtonText.visible = true;
               scene.noButton.visible = true;
               scene.noButtonText.visible = true;
+
+              //respond to trades, this is not finished
               scene.yesButton.setInteractive().on("pointerdown", () => {
                 scene.events.emit("trade confirm", {
                   buyAmount: buyAmount,
