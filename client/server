@@ -1,6 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env python3
 #Launch a test web server
 
-python3 -m http.server 80
-#python -m SimpleHTTPServer 80
-#python -m SimpleHTTPServer 8020 -bind 192.168.5.50
+#python3 -m http.server 8020
+import http.server, ssl
+
+server_address = ('tempusvalorem.net', 443)
+httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+
+# Create an SSL context
+context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+context.load_cert_chain('/etc/letsencrypt/live/tempusvalorem.net/fullchain.pem', '/etc/letsencrypt/live/tempusvalorem.net/privkey.pem')
+
+httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
+httpd.serve_forever()
