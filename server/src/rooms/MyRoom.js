@@ -28,6 +28,9 @@ exports.MyRoom = class extends colyseus.Room {
       
       let player = this.players[client.id];
       player.holdings.allocated = message;
+player.ready=true;
+
+
 
       player.holdings.held.conCap+=player.holdings.allocated.conCap;
       player.holdings.held.durCap+=player.holdings.allocated.durCap;
@@ -36,8 +39,23 @@ exports.MyRoom = class extends colyseus.Room {
       player.holdings.held.dur+=player.holdings.allocated.dur+1+player.holdings.held.durCap/5;
       player.holdings.held.lux+=player.holdings.allocated.lux+1+player.holdings.held.luxCap/5;
       client.send("allocation accepted",player.holdings.held);
-    })
 
+
+// check if all players are ready, if so emil "ready"
+
+
+
+let ready = true
+for (const [key, value] of Object.entries(this.players)) {
+  if (!value.ready) {
+    ready = false
+  }
+}
+if (ready) {
+  client.send("begin trading");
+}
+
+    });
 
     }
   

@@ -77,21 +77,21 @@ export class tradeHandler {
           " luxCap";
       },
     });
-    scene.events.on(
+   room.onMessage(
       "begin trading",
-      function () {
-        this.submission = false;
-        scene.time.addEvent({
-          delay: 2000,
-          callback: () => {
+      (data)=>{
+    
+       
+        
+         
             scene.stageText.setFontSize(72).setLeftAlign();
             scene.stageText.setPosition(
               scene.stageText.x,
               scene.stageText.y - 100
             );
             scene.stageText.setText(this.buyString + this.sellString);
-          },
-        });
+          
+        
         scene.timeText.visible = false;
         scene.rectangle_7.visible = false;
         scene.submitButton.visible = false;
@@ -104,7 +104,7 @@ export class tradeHandler {
         scene.buyButtonText.visible = true;
         scene.sellButton.visible = true;
         scene.sellButtonText.visible = true;
-        scene.stageText.setText("trade \n holdings");
+        scene.stageText.setText("trade holdings\nclick buy/sell\nclick a resource\nclick + -");
         scene.buyButton.setInteractive().on("pointerdown", () => {
           this.action = "Buy";
         });

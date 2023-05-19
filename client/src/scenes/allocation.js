@@ -274,9 +274,9 @@ export class allocationHandler {
       });
       room.onMessage('allocation accepted', (data) => {
         console.log(data);
-        scene.time.addEvent({
-          delay:2000,
-          callback:function(){scene.conValText.setText(data.con);
+        
+         
+         scene.conValText.setText(data.con);
             scene.durValText.setText(data.dur);
             scene.luxValText.setText(data.lux);
             scene.conCapValText.setText(data.conCap);
@@ -285,14 +285,14 @@ export class allocationHandler {
             scene.timeValText.setText("0");
 
         
-        scene.stageText.setText("allocation\naccepted");
-      scene.time.addEvent({
-delay:4000,
-callback:function(){scene.stageText.setText("waiting\non\nplayers");}
+       
+      
 
-      })
-    }
-      })
+scene.stageText.setText("waiting\non\nplayers");
+
+  
+    
+      
 
 
       })
