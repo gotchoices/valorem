@@ -1,5 +1,6 @@
 const colyseus = require("colyseus");
 const { MyRoomState } = require("./schema/MyRoomState");
+const { Player } = require("../player.js");
 
 exports.MyRoom = class extends colyseus.Room {
   onCreate(options) {
@@ -17,55 +18,24 @@ exports.MyRoom = class extends colyseus.Room {
     this.onMessage("player ready", (client, message) => {
       // handle "type" message.
       //
-
-      this.players[client.id] = {
-        holdings: {
-          con: 0,
-          dur: 0,
-          lux: 0,
-          conCap: 0,
-          durCap: 0,
-          luxCap: 0,
-        },
-        allocated: {
-          con: 0,
-          dur: 0,
-          lux: 0,
-          conCap: 0,
-          durCap: 0,
-          luxCap: 0,
-        },
-        buying: {
-          con: 0,
-          dur: 0,
-          lux: 0,
-          conCap: 0,
-          durCap: 0,
-          luxCap: 0,
-        },
-        selling: {
-          con: 0,
-          dur: 0,
-          lux: 0,
-          conCap: 0,
-          durCap: 0,
-          luxCap: 0,
-        },
-      };
+      this.players[client.id] = new Player(client.id)
+      
 
       client.send("begin allocation");
     });
 
     this.onMessage("allocation", (client, message) => {
+      
       let player = this.players[client.id];
-      player.allocated = message;
-      player.holdings.conCap+=player.allocated.conCap;
-      player.holdings.durCap+=player.allocated.durCap;
-      player.holdings.luxCap+=player.allocated.luxCap;
-      player.holdings.con+=player.allocated.con*2+player.holdings.conCap/5;
-      player.holdings.dur+=player.allocated.dur*2+player.holdings.durCap/5;
-      player.holdings.lux+=player.allocated.lux*2+player.holdings.luxCap/5;
-      client.send("begin trading",player.holdings);
+      player.holdings.allocated = message;
+
+      player.holdings.held.conCap+=player.holdings.allocated.conCap;
+      player.holdings.held.durCap+=player.holdings.allocated.durCap;
+      player.holdings.held.luxCap+=player.holdings.allocated.luxCap;
+      player.holdings.held.con+=player.holdings.allocated.con+1+player.holdings.held.conCap/5;
+      player.holdings.held.dur+=player.holdings.allocated.dur+1+player.holdings.held.durCap/5;
+      player.holdings.held.lux+=player.holdings.allocated.lux+1+player.holdings.held.luxCap/5;
+      client.send("allocation accepted",player.holdings.held);
     })
 
 

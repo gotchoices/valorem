@@ -145,7 +145,7 @@ export default class UI extends Phaser.Scene {
     ui.add(conValText);
 
     // durValText
-    const durValText = this.add.bitmapText(460, 1468, "spaceCrusaders", "0");
+    const durValText = this.add.bitmapText(460,1227, "spaceCrusaders", "0");
     durValText.name = "durValText";
     durValText.tintFill = true;
     durValText.text = "0";
@@ -187,7 +187,7 @@ export default class UI extends Phaser.Scene {
     ui.add(conCapValText);
 
     // durCapValText
-    const durCapValText = this.add.bitmapText(460, 1227, "spaceCrusaders", "0");
+    const durCapValText = this.add.bitmapText(460,  1468, "spaceCrusaders", "0");
     durCapValText.name = "durCapValText";
     durCapValText.tintFill = true;
     durCapValText.text = "0";

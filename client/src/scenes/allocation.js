@@ -255,6 +255,7 @@ export class allocationHandler {
               targets: this.boxes.getChildren(),
               strokeColor: 0xffffff,
               duration: 2000,
+              callbackScope: this,
               onComplete: function () {
                 room.send("allocation", {
                   con: this.conAllocated,
@@ -271,6 +272,30 @@ export class allocationHandler {
           this
         );
       });
+      room.onMessage('allocation accepted', (data) => {
+        console.log(data);
+        scene.time.addEvent({
+          delay:2000,
+          callback:function(){scene.conValText.setText(data.con);
+            scene.durValText.setText(data.dur);
+            scene.luxValText.setText(data.lux);
+            scene.conCapValText.setText(data.conCap);
+            scene.durCapValText.setText(data.durCap);
+            scene.luxCapValText.setText(data.luxCap);
+            scene.timeValText.setText("0");
+
+        
+        scene.stageText.setText("allocation\naccepted");
+      scene.time.addEvent({
+delay:4000,
+callback:function(){scene.stageText.setText("waiting\non\nplayers");}
+
+      })
+    }
+      })
+
+
+      })
     });
   }
 }
