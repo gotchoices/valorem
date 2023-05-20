@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export TV_SSL=true
+export TV_HOST=tempusvalorem.net
+export TV_CERT=/home/valorem/cert.pem
+export TV_KEY=/home/valorem/privkey.pem
+
+npm run start
