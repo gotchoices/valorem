@@ -3,7 +3,10 @@ async function testClient()
     return await createTestRoom();
 }
 async function createTestRoom() {
-    let client = Colyseus.Client("ws://localhost:8000");
+    let host = 'tempusvalorem.net'
+    let port = 8000
+    let proto = 'wss'
+    let client = Colyseus.Client(`${proto}://${host}:${port}`);
     const room = await client.create('my_room');
     console.log('Room created on client', room.id);
     return {client, room, buttonPressed: function()
