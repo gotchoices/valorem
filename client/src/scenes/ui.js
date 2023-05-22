@@ -390,11 +390,16 @@ export default class UI extends Phaser.Scene {
     this.load.pack("preloadpack", "assets/preloadpack.json");
   }
   async create() {
-    const client = new Colyseus.Client("ws://localhost:8000");
+    const proto = 'wss'
+    const host = 'tempusvalorem.net'
+    const port = 8000
+    const client = new Colyseus.Client(`${proto}://${host}:${port}`);
 
     const room=  await client.joinOrCreate('my_room');
+
     const scene=this;
    
+
     this.editorCreate();
   
       //lights
