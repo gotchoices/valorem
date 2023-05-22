@@ -1,7 +1,7 @@
 const colyseus = require("colyseus");
 const { MyRoomState } = require("./schema/MyRoomState");
 const { Player } = require("../player.js");
-
+const {Redeemer}=require("../redemption.js");
 const { Marketplace } = require("../marketplace.js");
 
 exports.MyRoom = class extends colyseus.Room {
@@ -9,8 +9,9 @@ exports.MyRoom = class extends colyseus.Room {
     this.setState(new MyRoomState());
     this.players = {};
     this.clientList = {};
+    this.round=0;
     this.marketplace = new Marketplace(this);
-
+this.redeemer=new Redeemer(this);
     this.onMessage("message", (client, message) => {
       //
       // handle "type" message.
@@ -38,6 +39,9 @@ exports.MyRoom = class extends colyseus.Room {
       let player = this.players[client.id];
       player.holdings.allocated = message;
 
+      
+      
+      player.timeLeft=message.timeLeft;
       player.holdings.held.conCap+=player.holdings.allocated.conCap;
       player.holdings.held.durCap+=player.holdings.allocated.durCap;
       player.holdings.held.luxCap+=player.holdings.allocated.luxCap;
@@ -46,26 +50,15 @@ exports.MyRoom = class extends colyseus.Room {
       player.holdings.held.lux+=player.holdings.allocated.lux+1+player.holdings.held.luxCap/5;
 
       client.send("allocation accepted",player.holdings.held);
+        //wait one second then send "begin trading" to the client
+        setTimeout(() => {
+          client.send("begin trading");
+        },1000
+        )        
 
-      // TESTING NEW TRADE
-      // let trade = new Trade(player, {'dur': 3}, {'con': 3})
-      // this.marketplace.addTrade(trade)
-      // console.log(this.marketplace.getAllTrades())
-      // END TESTING NEW TRADE
-
-      // check if all players are ready, if so emit "ready"
-      player.ready = true
-      let ready = true
-      for (const [key, value] of Object.entries(this.players)) {
-        if (!value.ready) {
-          ready = false
-        }
-      }
-      if (ready) {
-        this.sendToAll("begin trading");
-      }
     })
 
+    
    
   }  
 

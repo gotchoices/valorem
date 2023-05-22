@@ -406,7 +406,9 @@ export default class UI extends Phaser.Scene {
  new LightContainer(this, 210, 1578, "conCapLight");
  this.tradeSubmitButton=this.add.rectangle(this.minus.x+30,this.plus.y-30,124,128,0xd3cf50).setStrokeStyle(4,0xffffff).setVisible(false);
 this.tradeSubmitButtonText=this.add.bitmapText(this.minus.x+30,this.plus.y-30,"spaceCrusaders","submit\ntrade").setOrigin(0.5).setTint(0x3436738).setFontSize(30).setVisible(false);
- this.startButton.visible=true;
+this.endTradesButton=this.add.rectangle(this.tradeSubmitButton.x-this.tradeSubmitButton.width,this.plus.y-30, 124,128,0xd3cf50).setStrokeStyle(4,0xffffff).setVisible(false); 
+this.endTradesButtonText=this.add.bitmapText(this.endTradesButton.x,this.plus.y-30,"spaceCrusaders","end\ntrades").setOrigin(0.5).setTint(0x3436738).setCenterAlign().setFontSize(30).setVisible(false);
+this.startButton.visible=true;
 this.startButtonText.visible=true;
 this.ui.visible=false;
     this.startButton.setInteractive();
