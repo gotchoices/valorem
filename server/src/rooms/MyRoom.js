@@ -23,8 +23,8 @@ this.redeemer=new Redeemer(this);
     // //to begin the game and set the visibility of the main game
     this.onMessage("player ready", (client, message) => {
       // handle "type" message.
-      //
-      this.players[client.id] = new Player(client.id)
+      
+      this.players[client.id] = new Player(client.id,message)
       
 
       client.send("begin allocation");
