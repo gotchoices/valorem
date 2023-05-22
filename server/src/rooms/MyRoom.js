@@ -3,14 +3,14 @@ const { MyRoomState } = require("./schema/MyRoomState");
 const { Player } = require("../player.js");
 
 const { Marketplace } = require("../marketplace.js");
-
+const { Redeemer } = require("../redeemer.js");
 exports.MyRoom = class extends colyseus.Room {
   onCreate(options) {
     this.setState(new MyRoomState());
     this.players = {};
     this.clientList = {};
     this.marketplace = new Marketplace(this);
-
+    this.redeemer=new Redeemer(this);
     this.onMessage("message", (client, message) => {
       //
       // handle "type" message.
