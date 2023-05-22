@@ -4,8 +4,8 @@ constructor(room){
 
 
     room.onMessage("end trading", (client) => {
-
-        room.players[client.id].ready = true;
+let player=room.players[client.id];
+        player.ready = true;
         // check if all players are ready, if so emit "redemption"
         let ready = true
         for (const [key, value] of Object.entries(room.players)) {
