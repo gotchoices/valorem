@@ -34,13 +34,56 @@ export class tradeHandler {
    room.onMessage(
      "begin trading",
      (data) => {
-      // scene.marketButton.visible = true;
-      // scene.marketButtonText.visible = true;
-      // scene.marketButton.setInteractive().on("pointerdown", () => {
-    
+       scene.endTradesButton.visible = true;
+       scene.endTradesButtonText.visible = true;
+     scene.endTradesButton.setInteractive().on("pointerdown", () => {
+    room.send("end trading");
+    //remove listeners from all interactive trading elements
+       //disable all interactive elements
+       scene.yesButton.removeListener("pointerdown").disableInteractive();
+       scene.noButton.removeListener("pointerdown").disableInteractive();
 
+       scene.conSquare
+         .removeListener("pointerdown")
+         .disableInteractive()
+         .setStrokeStyle(4, 0xff0000);
+       scene.durSquare
+         .removeListener("pointerdown")
+         .disableInteractive()
+         .setStrokeStyle(4, 0xff0000);
+       scene.luxSquare
+         .removeListener("pointerdown")
+         .disableInteractive()
+         .setStrokeStyle(4, 0xff0000);
+       scene.conCapSquare
+         .removeListener("pointerdown")
+         .disableInteractive()
+         .setStrokeStyle(4, 0xff0000);
+       scene.durCapSquare
+         .removeListener("pointerdown")
+         .disableInteractive()
+         .setStrokeStyle(4, 0xff0000);
+       scene.luxCapSquare
+         .removeListener("pointerdown")
+         .disableInteractive()
+         .setStrokeStyle(4, 0xff0000);
+
+       scene.plus.removeListener("pointerdown").disableInteractive();
+       scene.minus.removeListener("pointerdown").disableInteractive();
+   
+       scene.input.removeListener("pointerdown");
+       scene.tradeSubmitButton.removeListener("pointerdown").disableInteractive().setVisible(false);
+        scene.tradeSubmitButtonText.setVisible(false);
+               scene.timeBox.removeListener("pointerdown").disableInteractive();
         
-      // });
+scene.endTradesButton.removeListener("pointerdown").disableInteractive().setVisible(false);
+scene.endTradesButtonText.setVisible(false);
+scene.stageText.setFontSize(150).setCenterAlign().setText("trading\nended");
+      this.trades.forEach((item)=>{
+        item.container.destroy();
+      })
+        
+       });
 
       scene.timeBox = scene.rectangle_7;
     scene.timeBox.setFillStyle(0xffff00);
