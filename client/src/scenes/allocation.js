@@ -40,7 +40,21 @@ export class allocationHandler {
     ]);
 
     room.onMessage("begin allocation", (data) => {
-    
+      this.allocated = 0;
+      this.selected = null;
+      this.conAllocated = 0;
+      this.durAllocated = 0;
+      this.luxAllocated = 0;
+      this.conCapAllocated = 0;
+      this.durCapAllocated = 0;
+      this.luxCapAllocated = 0;
+      scene.conSquare.setStrokeStyle(4, 0xffffff);
+      scene.durSquare.setStrokeStyle(4, 0xffffff);
+      scene.luxSquare.setStrokeStyle(4, 0xffffff);
+      scene.conCapSquare.setStrokeStyle(4, 0xffffff);
+      scene.durCapSquare.setStrokeStyle(4, 0xffffff);
+      scene.luxCapSquare.setStrokeStyle(4, 0xffffff);
+      scene.timeValText.setText("5");
       scene.stageText
         .setPosition(475, 258)
         .setFontSize(150)
@@ -171,7 +185,7 @@ export class allocationHandler {
         if (this.selected == "lux") {
           scene.luxSquare.setStrokeStyle(4, 0x00ff00);
         }
-        //manage lights, right now they are backwards
+        //manage lights
         let conlights = scene.conlights.getAll();
         let durlights = scene.durlights.getAll();
         let luxlights = scene.luxlights.getAll();
@@ -310,6 +324,7 @@ scene.stageText.setText("waiting\non\nplayers");
             scene.stageText.setText("allocation\nsent");
 
             room.send("allocation", {
+              timeLeft: 5 - this.allocated,
               con: this.conAllocated,
               dur: this.durAllocated,
               lux: this.luxAllocated,
