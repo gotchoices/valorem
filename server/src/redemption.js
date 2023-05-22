@@ -17,7 +17,7 @@ let player=room.players[client.id];
           for (const [key, value] of Object.entries(room.players)) {
             value.ready = false
             //using 5 for prime modifier
-            player.legacy+=player.timeLeft*5*.4*player.holdings.held.dur*.2*player.held.lux;
+            player.legacy+=player.timeLeft*5*.4*player.holdings.held.dur*.2*player.holdings.held.lux;
 
             //subtract 3 from each players consumables
             value.holdings.held.con-=3;
