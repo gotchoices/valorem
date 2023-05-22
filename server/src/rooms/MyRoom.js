@@ -3,7 +3,7 @@ const { MyRoomState } = require("./schema/MyRoomState");
 const { Player } = require("../player.js");
 const {Redeemer}=require("../redemption.js");
 const { Marketplace } = require("../marketplace.js");
-const { Redeemer } = require("../redeemer.js");
+
 exports.MyRoom = class extends colyseus.Room {
   onCreate(options) {
     this.setState(new MyRoomState());
