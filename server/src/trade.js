@@ -1,4 +1,3 @@
-
 exports.Trade = class{
 
   // STATUSES:
@@ -31,6 +30,11 @@ exports.Trade = class{
     if (this.validateSeller()) {
       this.player.trades.push(this)
       this.status = 1
+      for (const [key, value] of Object.entries(this.sell)) {
+        if (value > 0) {
+          player.holdings.escrow[key] += value
+        }
+      }
     } else {
       this.status = 4
     }
@@ -38,6 +42,11 @@ exports.Trade = class{
 
   cancelTrade() {
     if (this.status === 1) {
+      for (const [key, value] of Object.entries(this.sell)) {
+        if (value > 0) {
+          this.player.holdings.escrow[key] -= value
+        }
+      }
       this.status = 2
     }
   }
@@ -55,6 +64,7 @@ exports.Trade = class{
       // goods change hands
       for (const [key, value] of Object.entries(this.sell)) {
         this.player.holdings.held[key] -= value
+        this.player.holdings.escrow[key] -= value
         this.buyer.holdings.held[key] += value
       }
       for (const [key, value] of Object.entries(this.buy)) {
@@ -67,9 +77,8 @@ exports.Trade = class{
   validateSeller() {
     let valid = true
     // Confirm the seller has at least X of each "selling" entry
-    // TODO: check if buyer has orders held in escrow
     for (const [key, value] of Object.entries(this.sell)) {
-      if (this.player.holdings.held[key] < value) {
+      if ((this.player.holdings.held[key] - this.player.holdings.escrow[key]) < value) {
         valid = false
       }
     }
@@ -82,7 +91,7 @@ exports.Trade = class{
     // Confirm the buyer has at least X of each "buying" entry
     // TODO: check if buyer has orders held in escrow
     for (const [key, value] of Object.entries(this.buy)) {
-      if (buyer.holdings.held[key] < value) {
+      if (buyer.holdings.held[key] - buyer.holdings.escrow[key] < value) {
         valid = false
       }
     }
