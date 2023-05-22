@@ -2,6 +2,7 @@
 import { allocationHandler } from "./allocation.js";
 import { tradeHandler } from "./trading.js";
 import {trade} from "../classes/trade.js";
+import { redeemer } from "./redeemer.js";
 /* START OF COMPILED CODE */
 
 export default class UI extends Phaser.Scene {
@@ -441,7 +442,7 @@ this.ui.visible=false;
 
     this.allocationHandler = new allocationHandler(this, room);
     this.tradeHandler = new tradeHandler(this, room);
- 
+	this.redeemer= new redeemer(this,room);
     room.onMessage('update', (data) => {
      this.updateText(this,data)
     },this)

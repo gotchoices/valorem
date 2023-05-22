@@ -28,7 +28,8 @@ let player=room.players[client.id];
 
           }
           room.sendToAll("begin redemption");
-          room.sendToAll('begin allocation');
+          //send the player's legacy to the client
+          client.send("legacy",player.legacy);
          
         }
   
