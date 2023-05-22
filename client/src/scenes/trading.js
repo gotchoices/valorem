@@ -274,6 +274,16 @@ export class tradeHandler {
          );
        });
 
+       scene.timeBox.setInteractive().on("pointerdown", () => {
+        this.trades.forEach((item)=>{
+          if(item.container.visible==false){
+            item.container.visible=true;
+          }else{
+            item.container.visible=false;
+          }
+        })
+
+       })
      
 
        scene.input.on("pointerdown", (pointer) => {
@@ -380,8 +390,15 @@ trades.filter(trade=>trade!=null);
 
           let x=scene.stage.getTopLeft().x;
           let y=scene.stage.getTopLeft().y;
-
-          data.forEach((item) => {
+          scene.durValText.setText(data.playerHoldings.held.dur);
+          scene.conValText.setText(data.playerHoldings.held.con);
+          scene.luxValText.setText(data.playerHoldings.held.lux);
+          scene.durCapValText.setText(data.playerHoldings.held.durCap);
+          scene.conCapValText.setText(data.playerHoldings.held.conCap);
+          scene.luxCapValText.setText(data.playerHoldings.held.luxCap);
+          
+console.log(data)
+          data.trades.forEach((item) => {
             console.log(item)
           
             let id=item.trade.id;

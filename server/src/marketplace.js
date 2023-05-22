@@ -18,21 +18,40 @@ exports.Marketplace = class{
     room.onMessage("trade canceled", (client, message) => {
      //compare client id to trade via message and if client.id matches
      //the trade's player.id, then cancel the trade
-     let player = room.players[client.id].id;
-      let trade = this.trades[message]
+     let player =client.id;
+      let trade = this.trades[message.id]
       console.log(trade)
-      console.log(message)
-      if (trade.player.id === player.id && trade.id==message) {
+     
+      if (trade.player.id == player && trade.id==message.id) {
         trade.cancelTrade()
       }
       this.broadcastTrades();
     })
-  }
+  
 
+  room.onMessage("trade accepted", (client, message) => {
+    //compare client id to trade via message and if client.id matches
+    //the trade's player.id, then accept the trade
+    let player =client.id;
+    let trade = this.trades[message]
+    console.log(trade)
+   
+    if (trade.player.id != player && trade.id==message) {
+      trade.acceptOffer(room.players[client.id])
+      client.send("update",room.players[client.id].holdings.held)
+    }
+    this.broadcastTrades();
+
+  })
+  }
+  
   broadcastTrades() {
     for (const [key, client] of Object.entries(this.room.clientList)) {
       if (client) {
-        let tradeList = []
+        let player = this.room.players[client.id];
+        let tradeList = {}
+        tradeList.trades = []
+        tradeList.playerHoldings = player.holdings
         for (const [key, trade] of Object.entries(this.trades)) {
           if (trade.status === 1) {
             let tradeWrapper = {
@@ -40,13 +59,13 @@ exports.Marketplace = class{
               trade: trade.getTradeObject(),
               canAfford: trade.validateBuyer(this.room.players[client.sessionId])
             }
-            tradeList.push(tradeWrapper)
+            tradeList.trades.push(tradeWrapper)
           }
         }
+        console.log(tradeList)
         client.send("eligible trades", tradeList)
       }
-    }
-  }
+    }}
 
   getTradesForClient(client) {
 

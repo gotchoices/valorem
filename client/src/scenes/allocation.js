@@ -308,22 +308,23 @@ scene.stageText.setText("waiting\non\nplayers");
         
             scene.input.removeListener("pointerdown");
             scene.stageText.setText("allocation\nsent");
+
+            room.send("allocation", {
+              con: this.conAllocated,
+              dur: this.durAllocated,
+              lux: this.luxAllocated,
+              conCap: this.conCapAllocated,
+              durCap: this.durCapAllocated,
+              luxCap: this.luxCapAllocated,
+            })
             //flash boxes to indicate end of allocation phase
             scene.tweens.add({
               targets: this.boxes.getChildren(),
               strokeColor: 0xffffff,
               duration: 2000,
-              callbackScope: this,
-              onComplete: function () {
-                room.send("allocation", {
-                  con: this.conAllocated,
-                  dur: this.durAllocated,
-                  lux: this.luxAllocated,
-                  conCap: this.conCapAllocated,
-                  durCap: this.durCapAllocated,
-                  luxCap: this.luxCapAllocated,
-                });
+          
+              
             
-              },
+              
             });}
 }
