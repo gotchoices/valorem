@@ -5,6 +5,7 @@ this.id=id;
 this.legacy=0;
 this.timeLeft=0;
 this.ready=false;
+this.trades = [];
 this.holdings={
   
         held: {

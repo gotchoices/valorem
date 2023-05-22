@@ -15,7 +15,10 @@ export class allocationHandler {
     this.conCapAllocated = 0;
     this.durCapAllocated = 0;
     this.luxCapAllocated = 0;
-    this.timeBox = scene.rectangle_7;
+    scene.timeBox = scene.rectangle_7;
+    scene.timeBox.setFillStyle(0x000000);
+    scene.timeBox.setStrokeStyle(4, 0xffffff);
+    scene.timeText.setText("TIME");
     //run setText() on all text objects and set them to their corresponding values
     scene.timeValText.setText("5");
     scene.conValText.setText(this.conVal);
@@ -37,12 +40,13 @@ export class allocationHandler {
     ]);
 
     room.onMessage("begin allocation", (data) => {
+    
       scene.stageText
         .setPosition(475, 258)
         .setFontSize(150)
         .setCenterAlign()
         .setText("Allocate \nTime");
-      scene.submitButtonText.visible = true;
+   
       scene.ui.visible = true;
       scene.luxlights.visible = true;
       scene.durlights.visible = true;
@@ -50,7 +54,7 @@ export class allocationHandler {
       scene.conCapLights.visible = true;
       scene.durCapLights.visible = true;
       scene.luxCapLights.visible = true;
-      scene.submitButtonText.setDepth(99);
+    
       //determine which box is selected
       scene.conSquare.setInteractive().on("pointerdown", () => {
         this.selected = "con";
@@ -209,12 +213,71 @@ export class allocationHandler {
         }
       });
       //send submission to "server" for processing
-      let submission = [scene.submitButton, scene.submitButtonText];
-      submission.forEach((item) => {
-        item.setInteractive().on(
+     
+    
+        scene.yesButton.setInteractive().on(
           "pointerdown",
           () => {
+            this.submitAllocation(scene,room);
+          },
+          this
+        );
+      
+      room.onMessage('allocation accepted', (data) => {
+        console.log(data);
+        
+         
+         scene.conValText.setText(data.con);
+            scene.durValText.setText(data.dur);
+            scene.luxValText.setText(data.lux);
+            scene.conCapValText.setText(data.conCap);
+            scene.durCapValText.setText(data.durCap);
+            scene.luxCapValText.setText(data.luxCap);
+            scene.timeValText.setText("0");
+
+        
+       
+      
+
+scene.stageText.setText("waiting\non\nplayers");
+
+  
+    
+      
+
+
+      })
+      scene.noButton.setInteractive().on("pointerdown", () => {
+
+        this.reset(scene);
+
+      })
+    });
+  }
+  reset(scene){
+
+    this.durAllocated = 0;
+    this.luxAllocated = 0;
+    this.conAllocated = 0;
+    this.durCapAllocated = 0;
+    this.luxCapAllocated = 0;
+    this.conCapAllocated = 0;
+      this.allocated = 0;
+      scene.timeValText.setText("5");
+      scene.conValText.setText(0);
+      scene.durValText.setText(0);
+      scene.luxValText.setText(0);
+      scene.durCapValText.setText(0);
+      scene.luxCapValText.setText(0);
+      scene.conCapValText.setText(0);
+
+  }
+  submitAllocation(scene,room) {
+    
             //disable all interactive elements
+            scene.yesButton.removeListener("pointerdown").disableInteractive();
+            scene.noButton.removeListener("pointerdown").disableInteractive();
+
             scene.conSquare
               .removeListener("pointerdown")
               .disableInteractive()
@@ -242,14 +305,9 @@ export class allocationHandler {
 
             scene.plus.removeListener("pointerdown").disableInteractive();
             scene.minus.removeListener("pointerdown").disableInteractive();
-            scene.submitButton
-              .removeListener("pointerdown")
-              .disableInteractive();
-            scene.submitButtonText
-              .removeListener("pointerdown")
-              .disableInteractive();
-
+        
             scene.input.removeListener("pointerdown");
+            scene.stageText.setText("allocation\nsent");
             //flash boxes to indicate end of allocation phase
             scene.tweens.add({
               targets: this.boxes.getChildren(),
@@ -265,37 +323,7 @@ export class allocationHandler {
                   durCap: this.durCapAllocated,
                   luxCap: this.luxCapAllocated,
                 });
-                scene.stageText.setText("allocation\nsent");
+            
               },
-            });
-          },
-          this
-        );
-      });
-      room.onMessage('allocation accepted', (data) => {
-        console.log(data);
-        
-         
-         scene.conValText.setText(data.con);
-            scene.durValText.setText(data.dur);
-            scene.luxValText.setText(data.lux);
-            scene.conCapValText.setText(data.conCap);
-            scene.durCapValText.setText(data.durCap);
-            scene.luxCapValText.setText(data.luxCap);
-            scene.timeValText.setText("0");
-
-        
-       
-      
-
-scene.stageText.setText("waiting\non\nplayers");
-
-  
-    
-      
-
-
-      })
-    });
-  }
+            });}
 }

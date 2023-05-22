@@ -10,7 +10,8 @@ import UI from "./scenes/ui.js";
 		scale: {
 			mode: Phaser.Scale.FIT,
 			autoCenter: Phaser.Scale.CENTER_BOTH
-		}
+		},
+		debug:true
 	});
 
 	

@@ -1,4 +1,6 @@
 .idea/
 node_modules
-
+ssh
 phasereditor2d.config.json
+valorem
+valorem.pub
