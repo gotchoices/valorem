@@ -1,9 +1,10 @@
 exports.Player = class {
-  constructor(id){
-    this.id=id;
-    this.legacy=0;
-    this.timeLeft=0;
-    this.ready=false;
+  constructor(id, name) {
+    this.id = id;
+    this.legacy = 0;
+    this.name = name;
+    this.timeLeft = 0;
+    this.ready = false;
     this.trades = [];
     this.holdings = {
       held: {
@@ -32,4 +33,4 @@ exports.Player = class {
       },
     };
   }
-}
+};

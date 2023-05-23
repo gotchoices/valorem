@@ -1,13 +1,13 @@
-const assert = require('assert');
-const boot = require('@colyseus/testing').boot;
+const assert = require("assert");
+const boot = require("@colyseus/testing").boot;
 
 // import your "arena.config.ts" file here.
-const appConfig = require('../src/arena.config');
+const appConfig = require("../src/arena.config");
 
 describe("testing your Colyseus app", () => {
   let colyseus;
 
-  before(async () => colyseus = await boot(appConfig));
+  before(async () => (colyseus = await boot(appConfig)));
   after(async () => colyseus.shutdown());
 
   beforeEach(async () => await colyseus.cleanup());
@@ -25,6 +25,9 @@ describe("testing your Colyseus app", () => {
     // wait for state sync
     await room.waitForNextPatch();
 
-    assert.deepStrictEqual({ mySynchronizedProperty: "Hello world" }, client1.state.toJSON());
+    assert.deepStrictEqual(
+      { mySynchronizedProperty: "Hello world" },
+      client1.state.toJSON()
+    );
   });
 });

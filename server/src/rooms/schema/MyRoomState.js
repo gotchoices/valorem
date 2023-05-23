@@ -1,7 +1,7 @@
-const schema = require('@colyseus/schema');
+const schema = require("@colyseus/schema");
 
 class MyRoomState extends schema.Schema {
-  constructor(){
+  constructor() {
     super();
     this.mySynchronizedProperty = "Hello world";
   }

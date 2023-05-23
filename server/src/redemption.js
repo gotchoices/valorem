@@ -3,19 +3,20 @@ exports.Redeemer=class{
 constructor(room){
 
 
-    room.onMessage("end trading", (client) => {
+    room.onMessage("done trading", (client) => {
+      console.log(room.players[client.id].name+" is done trading")
 let player=room.players[client.id];
-        player.ready = true;
+        player.doneTrading = true;
         // check if all players are ready, if so emit "redemption"
         let ready = true
         for (const [key, value] of Object.entries(room.players)) {
-          if (!value.ready) {
+          if (!value.doneTrading) {
             ready = false
           }
         }
         if (ready) {
           for (const [key, value] of Object.entries(room.players)) {
-            value.ready = false
+            value.doneTrading = false
             //using 5 for prime modifier
             player.legacy+=player.timeLeft*5*.4*player.holdings.held.dur*.2*player.holdings.held.lux;
 
@@ -25,11 +26,12 @@ let player=room.players[client.id];
             value.holdings.held.lux=value.holdings.held.lux*.9;
             player.timeLeft=0;
 
-
+   client.send("legacy",player.legacy);
           }
+          console.log("redemption phase starting")
           room.sendToAll("begin redemption");
           //send the player's legacy to the client
-          client.send("legacy",player.legacy);
+       
          
         }
   

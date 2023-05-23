@@ -23,9 +23,8 @@ this.redeemer=new Redeemer(this);
     // //to begin the game and set the visibility of the main game
     this.onMessage("player ready", (client, message) => {
       // handle "type" message.
-      
-      this.players[client.id] = new Player(client.id,message)
-      
+      //
+      this.players[client.id] = new Player(client.id, message);
 
       client.send("begin allocation");
     });
@@ -39,8 +38,18 @@ this.redeemer=new Redeemer(this);
       let player = this.players[client.id];
       player.holdings.allocated = message;
 
-      
-      
+      player.holdings.held.conCap += player.holdings.allocated.conCap;
+      player.holdings.held.durCap += player.holdings.allocated.durCap;
+      player.holdings.held.luxCap += player.holdings.allocated.luxCap;
+      player.holdings.held.con +=
+        player.holdings.allocated.con + 1 + player.holdings.held.conCap / 5;
+      player.holdings.held.dur +=
+        player.holdings.allocated.dur + 1 + player.holdings.held.durCap / 5;
+      player.holdings.held.lux +=
+        player.holdings.allocated.lux + 1 + player.holdings.held.luxCap / 5;
+
+      client.send("allocation accepted", player.holdings.held);
+
       player.timeLeft=message.timeLeft;
       player.holdings.held.conCap+=player.holdings.allocated.conCap;
       player.holdings.held.durCap+=player.holdings.allocated.durCap;
@@ -59,16 +68,18 @@ this.redeemer=new Redeemer(this);
     })
 
    
-  }  
+  }
 
   onJoin(client, options) {
     console.log(client.sessionId, "joined!");
-    this.clientList[client.id] = client
+    this.clientList[client.id] = client;
   }
 
   onLeave(client, consented) {
     console.log(client.sessionId, "left!");
-    this.clientList[client.id] = null
+    this.marketplace.removeTradesByPlayerId(client.id);
+    this.clientList[client.id] = null;
+    this.marketplace.broadcastTrades();
   }
 
   onDispose() {
@@ -79,9 +90,8 @@ this.redeemer=new Redeemer(this);
   sendToAll(name, message) {
     for (const [key, client] of Object.entries(this.clientList)) {
       if (client) {
-        client.send(name, message)
+        client.send(name, message);
       }
     }
   }
-
 };
