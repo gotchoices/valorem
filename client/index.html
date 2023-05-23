@@ -221,13 +221,15 @@
 			}
 		}
 		$( document ).ready(function() {
-			// player.client = new Colyseus.Client("ws://localhost:8000");
-			if (window.location.hostname === 'localhost') {
-				player.client = new Colyseus.Client("ws://localhost:8000");
-			} else {
+
+			//player.client = new Colyseus.Client("ws://localhost:8000");
+		//	if (window.location.hostname === 'localhost') {
+		//		player.client = new Colyseus.Client("ws://localhost:8000");
+		//	} else {
 				player.client = new Colyseus.Client("wss://tempusvalorem.net:8000");
-			}
-			player.client = new Colyseus.Client("ws://" + window.location.hostname + ":8000");
+			//}
+		//	player.client = new Colyseus.Client("ws://" + window.location.hostname + ":8000");
+
 			player.client.joinOrCreate('my_room').then((room) => { player.room = room})
 			let animal = animals[Math.floor(Math.random() * 190)]
 			$('#name').val(animal)
@@ -302,6 +304,7 @@
 				$('#marketTabCreate').removeClass('selected')
 				$('#marketTabMarket').addClass('selected')
 			});
+
 
 			$( "#endTrading" ).on( "click", function() {
 				player.room.send('done trading')
@@ -684,8 +687,12 @@
 						</tr>
 					</table>
 				</div>
+
 				<div id="createOrder" class="button" style="display: inline-block; float: left; margin: 20px;">Submit Order</div>
 				<div id="endTrading" class="button" style="display: inline-block; float: right; margin: 20px;">Done Trading</div>
+
+				<div id="createOrder" class="button" style="display: inline-block;">Submit Order</div>
+
 			</div>
 			<div id="displayOrderPanel" style="text-align: left; display: none">
 			</div>
