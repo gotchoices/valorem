@@ -375,7 +375,7 @@
 				console.log(data)
 				player.holdings.held = data
 				_.each(player.holdings.held, function(holding, key) {
-					$('#display-' + key).html(holding)
+					$('#display-' + key).html(Math.round(holding * 100) / 100)
 				});
 				console.log(player.holdings)
 				_.each(player.holdings.escrow, function(escrow, key) {
@@ -397,7 +397,7 @@
 			player.room.onMessage("eligible trades", (data) => { 
 				player.holdings = data.playerHoldings
 				_.each(player.holdings.held, function(holding, key) {
-					$('#display-' + key).html(holding)
+					$('#display-' + key).html(Math.round(holding * 100) / 100)
 				});
 				_.each(player.holdings.escrow, function(escrow, key) {
 					if (escrow > 0) {
