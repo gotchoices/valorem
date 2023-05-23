@@ -40,14 +40,13 @@
 			-ms-user-select: none; /* IE10+/Edge */
 			user-select: none; /* Standard */
 		}
-		table {font-size: 24px;}
+		table {font-size: 18px;}
 		td {width: 25%; text-align: center;}
 		#allotment {
 			text-align: center;
 		}
 		#container {
 			text-align: center;
-			width: 50%;
 			max-width: 600px;
 			background-color: dimgrey;
 			margin: 0 auto;
@@ -57,16 +56,16 @@
 		#timeCounter {
 			float: left;
 			margin-left: 20px;
-			font-size: 28px;
+			font-size: 20px;
 			font-weight: bold;
-			line-height: 40px;
+			line-height: 20px;
 		}
 		#remainingAllotment {
 			border: 2px solid white;
 			background: black;
 			color: white;
-			width: 40px;
-			height: 40px;
+			width: 20px;
+			height: 20px;
 			display: inline-block;
 			margin-left: 10px
 		}
@@ -75,7 +74,7 @@
 			width: 80%;
 			margin: 0 auto;
 			margin-top: 50%;
-			font-size: 50px;
+			font-size: 40px;
 			border: 2px solid white;
 			background: black;
 			color: white;
@@ -83,7 +82,7 @@
 		}
 		#currentAssets {
 			text-align: center;
-			font-size: 48px;
+			font-size: 38px;
 			margin: 0 auto;
 			width: 95%;
 			border-bottom: 2px solid black;
@@ -106,7 +105,7 @@
 			background: black;
 			color: white;
 			height: 40px;
-			font-size: 20px;
+			font-size: 14px;
 			line-height: 40px;
 			padding-left: 10px;
 			padding-right: 10px;
@@ -119,22 +118,23 @@
 			border: 2px solid white;
 			background: black;
 			margin: 10px auto;
-			font-size: 64px;
+			font-size: 48px;
 			color: white;
 		}
 		.light {
 			background-color: red;
-			width: 10px;
+			width: 8px;
 			height: 10px;
 			border-radius: 10px;
 			display: inline-block;
+			margin: -1px;
 		}
 		.allotmentCell {
 			background-color: black; 
 			margin: 10px; 
-			height:100px; 
+			height: 64px; 
 			display: inline-block;
-			font-size: 32px; 
+			font-size: 24px; 
 			padding: 4px;
 			border: 2px solid white;
     	border-radius: 5px;
@@ -143,9 +143,9 @@
 		.tradeCell {
 			background-color: black; 
 			margin: 10px; 
-			height: 40px; 
+			height: 28px; 
 			display: inline-block;
-			font-size: 32px; 
+			font-size: 20px; 
 			padding: 4px;
 			border: 2px solid white;
     	border-radius: 5px;
@@ -155,7 +155,7 @@
 			text-align: center;
 			width: 40%;
 			display: inline-block;
-			font-size: 18px;
+			font-size: 14px;
 			border: 2px solid white;
 			background: black;
 			color: white;
@@ -165,7 +165,7 @@
 		}
 		.tradeTable {
 			margin: 0 auto;
-    	font-size: 16px;
+    	font-size: 12px;
 			border: 1px solid black;
 			color: white;
 			border-radius: 5px
@@ -221,7 +221,13 @@
 			}
 		}
 		$( document ).ready(function() {
-			player.client = new Colyseus.Client("ws://localhost:8000");
+			// player.client = new Colyseus.Client("ws://localhost:8000");
+			if (window.location.hostname === 'localhost') {
+				player.client = new Colyseus.Client("ws://localhost:8000");
+			} else {
+				player.client = new Colyseus.Client("wss://tempusvalorem.net:8000");
+			}
+			player.client = new Colyseus.Client("ws://" + window.location.hostname + ":8000");
 			player.client.joinOrCreate('my_room').then((room) => { player.room = room})
 			let animal = animals[Math.floor(Math.random() * 190)]
 			$('#name').val(animal)
@@ -275,7 +281,7 @@
 
 			$( ".sell-up" ).on( "click", function() {
 				let v = $( this ).parent().data('var')
-				if (player.trade.sell[v] !== 9 && player.trade.sell[v] < player.holdings.held[v] - (player.holdings.escrow[v] ? player.holdings.escrow[v] : 0)) {
+				if (player.trade.sell[v] !== 9 && player.trade.sell[v] < Math.floor(player.holdings.held[v] - (player.holdings.escrow[v] ? player.holdings.escrow[v] : 0))) {
 					player.trade.sell[v]++;
 				}
 				populateTrade();
@@ -290,12 +296,15 @@
 			});
 
 			$( "#createOrder" ).on( "click", function() {
-				// TODO: Validate not an invalid order
 				player.room.send("trade submitted", player.trade);
 				$('#createOrderPanel').hide()
 				$('#displayOrderPanel').show()
 				$('#marketTabCreate').removeClass('selected')
 				$('#marketTabMarket').addClass('selected')
+			});
+
+			$( "#endTrading" ).on( "click", function() {
+				player.room.send('done trading')
 			});
 
 			$( "#marketTabMarket" ).on( "click", function() {
@@ -368,6 +377,12 @@
 				_.each(player.holdings.held, function(holding, key) {
 					$('#display-' + key).html(holding)
 				});
+				console.log(player.holdings)
+				_.each(player.holdings.escrow, function(escrow, key) {
+					if (escrow > 0) {
+						$('#display-' + key).append(" (-" + escrow + ")")
+					}
+				});
 				$('#allotment').hide()
 				$('#allotmentPending').show()
 			});
@@ -384,6 +399,11 @@
 				_.each(player.holdings.held, function(holding, key) {
 					$('#display-' + key).html(holding)
 				});
+				_.each(player.holdings.escrow, function(escrow, key) {
+					if (escrow > 0) {
+						$('#display-' + key).append(" (-" + escrow + ")")
+					}
+				});
 				let yourTrades = ''
 				let otherTrades = ''
 				_.each(data.trades, function(trade) {
@@ -393,26 +413,26 @@
 					} else {
 						tradeObj += '<div class="userName">' + trade.trade.name + ' is...</div>'
 					}
-					tradeObj += 'Offering<table class="tradeTable"><tr><td></td><td>Con.</td><td>Dur.</td><td>Lux.</td></tr><tr><td>H</td>'
+					tradeObj += 'Offering<table class="tradeTable"><tr><td></td><td>Con.</td><td>Dur.</td><td>Lux.</td></tr><tr><td>Co.</td>'
 					tradeObj += '<td>' + (trade.trade.buy.con ? trade.trade.buy.con : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.buy.dur ? trade.trade.buy.dur : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.buy.lux ? trade.trade.buy.lux : 0) + '</td>'
-					tradeObj += '</tr><tr><td>C</td>'
+					tradeObj += '</tr><tr><td>Ca.</td>'
 					tradeObj += '<td>' + (trade.trade.buy.conCap ? trade.trade.buy.conCap : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.buy.durCap ? trade.trade.buy.durCap : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.buy.luxCap ? trade.trade.buy.luxCap : 0) + '</td>'
-					tradeObj += '</tr></table>Asking<table class="tradeTable"><tr><td></td><td>Con.</td><td>Dur.</td><td>Lux.</td></tr><tr><td>H</td>'
+					tradeObj += '</tr></table>Asking<table class="tradeTable"><tr><td></td><td>Con.</td><td>Dur.</td><td>Lux.</td></tr><tr><td>Co.</td>'
 					tradeObj += '<td>' + (trade.trade.sell.con ? trade.trade.sell.con : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.sell.dur ? trade.trade.sell.dur : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.sell.lux ? trade.trade.sell.lux : 0) + '</td>'
-					tradeObj += '</tr><tr><td>C</td>'
+					tradeObj += '</tr><tr><td>Ca.</td>'
 					tradeObj += '<td>' + (trade.trade.sell.conCap ? trade.trade.sell.conCap : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.sell.durCap ? trade.trade.sell.durCap : 0) + '</td>'
 					tradeObj += '<td>' + (trade.trade.sell.luxCap ? trade.trade.sell.luxCap : 0) + '</td>'
 					tradeObj += '</tr></table>'
 					if (trade.owner) {
 						tradeObj += '<div class="button cancelBtn" onClick="cancelOrder(\'' + trade.trade.id + '\')">Cancel</div>'
-					} else {
+					} else if (trade.canAfford) {
 						tradeObj += '<div class="button acceptBtn" onClick="acceptOrder(\'' + trade.trade.id + '\')">Accept</div>'
 					}
 					tradeObj += '</div>'
@@ -434,7 +454,7 @@
 		<div id="starter" style="text-align: center;">
 			<div id="nameDiv">
 				Please Enter Your Name<br/>
-				<input type="text" id="name" name="name" style="    font-size: 32px; 
+				<input type="text" id="name" name="name" style="    font-size: 24px; 
 				width: 70%;
 				text-align: center;
 				margin-bottom: 10px;">
@@ -456,11 +476,11 @@
 					<td>Luxuries</td>
 				</tr>
 				<tr>
-					<td>Held</td>
+					<td>Commodity</td>
 					<td><div class="allotmentCell" data-var="con">
-						<div class="up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+						<div class="down" style="display: inline-block; border: 1px solid black; width: 16px">-</div>
 						<div id="con-value" class="value" style="display: inline-block">0</div>
-						<div class="down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+						<div class="up" style="display: inline-block; border: 1px solid black; width: 16px">+</div>
 						<div class="lights" id="lights-con">
 							<div class="light"></div>
 							<div class="light"></div>
@@ -470,9 +490,9 @@
 						</div>
 					</div></td>
 					<td><div class="allotmentCell" data-var="dur">
-						<div class="up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+						<div class="down" style="display: inline-block; border: 1px solid black; width: 16px">-</div>
 						<div id="dur-value" class="value" style="display: inline-block">0</div>
-						<div class="down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+						<div class="up" style="display: inline-block; border: 1px solid black; width: 16px">+</div>
 						<div class="lights" id="lights-dur">
 							<div class="light"></div>
 							<div class="light"></div>
@@ -482,9 +502,9 @@
 						</div>
 					</div></td>
 					<td><div class="allotmentCell" data-var="lux">
-						<div class="up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+						<div class="down" style="display: inline-block; border: 1px solid black; width: 16px">-</div>
 						<div id="lux-value" class="value" style="display: inline-block">0</div>
-						<div class="down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+						<div class="up" style="display: inline-block; border: 1px solid black; width: 16px">+</div>
 						<div class="lights" id="lights-lux">
 							<div class="light"></div>
 							<div class="light"></div>
@@ -497,9 +517,9 @@
 				<tr>
 					<td>Capital</td>
 					<td><div class="allotmentCell" data-var="conCap">
-						<div class="up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+						<div class="down" style="display: inline-block; border: 1px solid black; width: 16px">-</div>
 						<div id="conCap-value" class="value" style="display: inline-block">0</div>
-						<div class="down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+						<div class="up" style="display: inline-block; border: 1px solid black; width: 16px">+</div>
 						<div class="lights" id="lights-conCap">
 							<div class="light"></div>
 							<div class="light"></div>
@@ -509,9 +529,9 @@
 						</div>
 					</div></td>
 					<td><div class="allotmentCell" data-var="durCap">
-						<div class="up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+						<div class="down" style="display: inline-block; border: 1px solid black; width: 16px">-</div>
 						<div id="durCap-value" class="value" style="display: inline-block">0</div>
-						<div class="down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+						<div class="up" style="display: inline-block; border: 1px solid black; width: 16px">+</div>
 						<div class="lights" id="lights-durCap">
 							<div class="light"></div>
 							<div class="light"></div>
@@ -521,9 +541,9 @@
 						</div>
 					</div></td>
 					<td><div class="allotmentCell" data-var="luxCap">
-						<div class="up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+						<div class="down" style="display: inline-block; border: 1px solid black; width: 16px">-</div>
 						<div id="luxCap-value" class="value" style="display: inline-block">0</div>
-						<div class="down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+						<div class="up" style="display: inline-block; border: 1px solid black; width: 16px">+</div>
 						<div class="lights" id="lights-luxCap">
 							<div class="light"></div>
 							<div class="light"></div>
@@ -552,7 +572,7 @@
 						<td>Luxuries</td>
 					</tr>
 					<tr>
-						<td>Held</td>
+						<td>Commodity</td>
 						<td id="display-con"></td>
 						<td id="display-dur"></td>
 						<td id="display-lux"></td>
@@ -571,7 +591,7 @@
 			</div>
 			<div id="createOrderPanel">
 				<div id="buySide">
-					<div style="font-size: 48px;">Buying</div>
+					<div style="font-size: 36px;">Buying</div>
 					<table style="width: 100%;">
 						<tr>
 							<td></td>
@@ -580,45 +600,45 @@
 							<td>Luxuries</td>
 						</tr>
 						<tr>
-							<td>Held</td>
+							<td>Commodity</td>
 							<td><div class="tradeCell" data-var="con">
-								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="con-buy" class="value" style="display: inline-block">0</div>
-								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="dur">
-								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="dur-buy" class="value" style="display: inline-block">0</div>
-								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="lux">
-								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="lux-buy" class="value" style="display: inline-block">0</div>
-								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 						</tr>
 						<tr>
 							<td>Capital</td>
 							<td><div class="tradeCell" data-var="conCap">
-								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="conCap-buy" class="value" style="display: inline-block">0</div>
-								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="durCap">
-								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="durCap-buy" class="value" style="display: inline-block">0</div>
-								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="luxCap">
-								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="luxCap-buy" class="value" style="display: inline-block">0</div>
-								<div class="buy-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="buy-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 						</tr>
 					</table>
 				</div>
 				<div id="sellSide">
-					<div style="font-size: 48px;">Selling</div>
+					<div style="font-size: 36px;">Selling</div>
 					<table style="width: 100%;">
 						<tr>
 							<td></td>
@@ -627,44 +647,45 @@
 							<td>Luxuries</td>
 						</tr>
 						<tr>
-							<td>Held</td>
+							<td>Commodity</td>
 							<td><div class="tradeCell" data-var="con">
-								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="con-sell" class="value" style="display: inline-block">0</div>
-								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="dur">
-								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="dur-sell" class="value" style="display: inline-block">0</div>
-								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="lux">
-								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="lux-sell" class="value" style="display: inline-block">0</div>
-								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 						</tr>
 						<tr>
 							<td>Capital</td>
 							<td><div class="tradeCell" data-var="conCap">
-								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="conCap-sell" class="value" style="display: inline-block">0</div>
-								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="durCap">
-								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="durCap-sell" class="value" style="display: inline-block">0</div>
-								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 							<td><div class="tradeCell" data-var="luxCap">
-								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 32px">+</div>
+								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 14px">-</div>
 								<div id="luxCap-sell" class="value" style="display: inline-block">0</div>
-								<div class="sell-down" style="display: inline-block; border: 1px solid black; width: 32px">-</div>
+								<div class="sell-up" style="display: inline-block; border: 1px solid black; width: 14px">+</div>
 							</div></td>
 						</tr>
 					</table>
 				</div>
-				<div id="createOrder" class="button" style="display: inline-block;">Submit Order</div>
+				<div id="createOrder" class="button" style="display: inline-block; float: left; margin: 20px;">Submit Order</div>
+				<div id="endTrading" class="button" style="display: inline-block; float: right; margin: 20px;">Done Trading</div>
 			</div>
 			<div id="displayOrderPanel" style="text-align: left; display: none">
 			</div>

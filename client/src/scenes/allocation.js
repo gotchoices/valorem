@@ -40,27 +40,12 @@ export class allocationHandler {
     ]);
 
     room.onMessage("begin allocation", (data) => {
-      this.allocated = 0;
-      this.selected = null;
-      this.conAllocated = 0;
-      this.durAllocated = 0;
-      this.luxAllocated = 0;
-      this.conCapAllocated = 0;
-      this.durCapAllocated = 0;
-      this.luxCapAllocated = 0;
-      scene.conSquare.setStrokeStyle(4, 0xffffff);
-      scene.durSquare.setStrokeStyle(4, 0xffffff);
-      scene.luxSquare.setStrokeStyle(4, 0xffffff);
-      scene.conCapSquare.setStrokeStyle(4, 0xffffff);
-      scene.durCapSquare.setStrokeStyle(4, 0xffffff);
-      scene.luxCapSquare.setStrokeStyle(4, 0xffffff);
-      scene.timeValText.setText("5");
       scene.stageText
         .setPosition(475, 258)
         .setFontSize(150)
         .setCenterAlign()
         .setText("Allocate \nTime");
-   
+
       scene.ui.visible = true;
       scene.luxlights.visible = true;
       scene.durlights.visible = true;
@@ -68,7 +53,7 @@ export class allocationHandler {
       scene.conCapLights.visible = true;
       scene.durCapLights.visible = true;
       scene.luxCapLights.visible = true;
-    
+
       //determine which box is selected
       scene.conSquare.setInteractive().on("pointerdown", () => {
         this.selected = "con";
@@ -185,7 +170,7 @@ export class allocationHandler {
         if (this.selected == "lux") {
           scene.luxSquare.setStrokeStyle(4, 0x00ff00);
         }
-        //manage lights
+        //manage lights, right now they are backwards
         let conlights = scene.conlights.getAll();
         let durlights = scene.durlights.getAll();
         let luxlights = scene.luxlights.getAll();
@@ -227,119 +212,98 @@ export class allocationHandler {
         }
       });
       //send submission to "server" for processing
-     
-    
-        scene.yesButton.setInteractive().on(
-          "pointerdown",
-          () => {
-            this.submitAllocation(scene,room);
-          },
-          this
-        );
-      
-      room.onMessage('allocation accepted', (data) => {
+
+      scene.yesButton.setInteractive().on(
+        "pointerdown",
+        () => {
+          this.submitAllocation(scene, room);
+        },
+        this
+      );
+
+      room.onMessage("allocation accepted", (data) => {
         console.log(data);
-        
-         
-         scene.conValText.setText(data.con);
-            scene.durValText.setText(data.dur);
-            scene.luxValText.setText(data.lux);
-            scene.conCapValText.setText(data.conCap);
-            scene.durCapValText.setText(data.durCap);
-            scene.luxCapValText.setText(data.luxCap);
-            scene.timeValText.setText("0");
 
-        
-       
-      
+        scene.conValText.setText(data.con);
+        scene.durValText.setText(data.dur);
+        scene.luxValText.setText(data.lux);
+        scene.conCapValText.setText(data.conCap);
+        scene.durCapValText.setText(data.durCap);
+        scene.luxCapValText.setText(data.luxCap);
+        scene.timeValText.setText("0");
 
-scene.stageText.setText("waiting\non\nplayers");
-
-  
-    
-      
-
-
-      })
+        scene.stageText.setText("waiting\non\nplayers");
+      });
       scene.noButton.setInteractive().on("pointerdown", () => {
-
         this.reset(scene);
-
-      })
+      });
     });
   }
-  reset(scene){
-
+  reset(scene) {
     this.durAllocated = 0;
     this.luxAllocated = 0;
     this.conAllocated = 0;
     this.durCapAllocated = 0;
     this.luxCapAllocated = 0;
     this.conCapAllocated = 0;
-      this.allocated = 0;
-      scene.timeValText.setText("5");
-      scene.conValText.setText(0);
-      scene.durValText.setText(0);
-      scene.luxValText.setText(0);
-      scene.durCapValText.setText(0);
-      scene.luxCapValText.setText(0);
-      scene.conCapValText.setText(0);
-
+    this.allocated = 0;
+    scene.timeValText.setText("5");
+    scene.conValText.setText(0);
+    scene.durValText.setText(0);
+    scene.luxValText.setText(0);
+    scene.durCapValText.setText(0);
+    scene.luxCapValText.setText(0);
+    scene.conCapValText.setText(0);
   }
-  submitAllocation(scene,room) {
-    
-            //disable all interactive elements
-            scene.yesButton.removeListener("pointerdown").disableInteractive();
-            scene.noButton.removeListener("pointerdown").disableInteractive();
+  submitAllocation(scene, room) {
+    //disable all interactive elements
+    scene.yesButton.removeListener("pointerdown").disableInteractive();
+    scene.noButton.removeListener("pointerdown").disableInteractive();
 
-            scene.conSquare
-              .removeListener("pointerdown")
-              .disableInteractive()
-              .setStrokeStyle(4, 0xff0000);
-            scene.durSquare
-              .removeListener("pointerdown")
-              .disableInteractive()
-              .setStrokeStyle(4, 0xff0000);
-            scene.luxSquare
-              .removeListener("pointerdown")
-              .disableInteractive()
-              .setStrokeStyle(4, 0xff0000);
-            scene.conCapSquare
-              .removeListener("pointerdown")
-              .disableInteractive()
-              .setStrokeStyle(4, 0xff0000);
-            scene.durCapSquare
-              .removeListener("pointerdown")
-              .disableInteractive()
-              .setStrokeStyle(4, 0xff0000);
-            scene.luxCapSquare
-              .removeListener("pointerdown")
-              .disableInteractive()
-              .setStrokeStyle(4, 0xff0000);
+    scene.conSquare
+      .removeListener("pointerdown")
+      .disableInteractive()
+      .setStrokeStyle(4, 0xff0000);
+    scene.durSquare
+      .removeListener("pointerdown")
+      .disableInteractive()
+      .setStrokeStyle(4, 0xff0000);
+    scene.luxSquare
+      .removeListener("pointerdown")
+      .disableInteractive()
+      .setStrokeStyle(4, 0xff0000);
+    scene.conCapSquare
+      .removeListener("pointerdown")
+      .disableInteractive()
+      .setStrokeStyle(4, 0xff0000);
+    scene.durCapSquare
+      .removeListener("pointerdown")
+      .disableInteractive()
+      .setStrokeStyle(4, 0xff0000);
+    scene.luxCapSquare
+      .removeListener("pointerdown")
+      .disableInteractive()
+      .setStrokeStyle(4, 0xff0000);
 
-            scene.plus.removeListener("pointerdown").disableInteractive();
-            scene.minus.removeListener("pointerdown").disableInteractive();
-        
-            scene.input.removeListener("pointerdown");
-            scene.stageText.setText("allocation\nsent");
+    scene.plus.removeListener("pointerdown").disableInteractive();
+    scene.minus.removeListener("pointerdown").disableInteractive();
 
-            room.send("allocation", {
-              timeLeft: 5 - this.allocated,
-              con: this.conAllocated,
-              dur: this.durAllocated,
-              lux: this.luxAllocated,
-              conCap: this.conCapAllocated,
-              durCap: this.durCapAllocated,
-              luxCap: this.luxCapAllocated,
-            })
-            //flash boxes to indicate end of allocation phase
-            scene.tweens.add({
-              targets: this.boxes.getChildren(),
-              strokeColor: 0xffffff,
-              duration: 2000,
-          
-              
-            
-              
-            });}
+    scene.input.removeListener("pointerdown");
+    scene.stageText.setText("allocation\nsent");
+
+    room.send("allocation", {
+      con: this.conAllocated,
+      dur: this.durAllocated,
+      lux: this.luxAllocated,
+      conCap: this.conCapAllocated,
+      durCap: this.durCapAllocated,
+      luxCap: this.luxCapAllocated,
+    });
+    //flash boxes to indicate end of allocation phase
+    scene.tweens.add({
+      targets: this.boxes.getChildren(),
+      strokeColor: 0xffffff,
+      duration: 2000,
+    });
+  }
 }
