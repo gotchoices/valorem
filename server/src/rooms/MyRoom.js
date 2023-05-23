@@ -1,7 +1,7 @@
 const colyseus = require("colyseus");
 const { MyRoomState } = require("./schema/MyRoomState");
 const { Player } = require("../player.js");
-const {Redeemer}=require("../redemption.js");
+const { Redeemer } = require("../redemption.js");
 const { Marketplace } = require("../marketplace.js");
 
 exports.MyRoom = class extends colyseus.Room {
@@ -9,9 +9,29 @@ exports.MyRoom = class extends colyseus.Room {
     this.setState(new MyRoomState());
     this.players = {};
     this.clientList = {};
-    this.round=0;
+    this.roundInfo = {
+      round: 1,
+      roundState: 0, // 0 for trading, 1 for redemption
+      roundTimer: 120, // 120 for trading, 10 for redemption
+    };
+
+    let that = this;
+    this.heatbeatLoop = setInterval(function () {
+      console.log(that.roundInfo);
+      that.roundInfo.roundTimer--;
+      if (that.roundInfo.roundTimer === 0) {
+        if (that.roundInfo.roundState === 0) {
+          that.endRound();
+        } else {
+          that.endRedemption();
+        }
+      }
+      that.sendToAll("heartbeat", that.roundInfo);
+    }, 1000);
+
+    this.round = 0;
     this.marketplace = new Marketplace(this);
-this.redeemer=new Redeemer(this);
+    this.redeemer = new Redeemer(this);
     this.onMessage("message", (client, message) => {
       //
       // handle "type" message.
@@ -48,26 +68,15 @@ this.redeemer=new Redeemer(this);
       player.holdings.held.lux +=
         player.holdings.allocated.lux + 1 + player.holdings.held.luxCap / 5;
 
+      console.log(message)
+
+      player.timeLeft = message.timeLeft;
       client.send("allocation accepted", player.holdings.held);
-
-      player.timeLeft=message.timeLeft;
-      player.holdings.held.conCap+=player.holdings.allocated.conCap;
-      player.holdings.held.durCap+=player.holdings.allocated.durCap;
-      player.holdings.held.luxCap+=player.holdings.allocated.luxCap;
-      player.holdings.held.con+=player.holdings.allocated.con+1+player.holdings.held.conCap/5;
-      player.holdings.held.dur+=player.holdings.allocated.dur+1+player.holdings.held.durCap/5;
-      player.holdings.held.lux+=player.holdings.allocated.lux+1+player.holdings.held.luxCap/5;
-
-      client.send("allocation accepted",player.holdings.held);
-        //wait one second then send "begin trading" to the client
-        setTimeout(() => {
-          client.send("begin trading");
-        },1000
-        )        
-
-    })
-
-   
+      //wait one second then send "begin trading" to the client
+      setTimeout(() => {
+        client.send("begin trading");
+      }, 1000);
+    });
   }
 
   onJoin(client, options) {
@@ -83,6 +92,7 @@ this.redeemer=new Redeemer(this);
   }
 
   onDispose() {
+    clearInterval(this.heatbeatLoop);
     console.log("room", this.roomId, "disposing...");
   }
 
@@ -93,5 +103,16 @@ this.redeemer=new Redeemer(this);
         client.send(name, message);
       }
     }
+  }
+
+  endRound() {
+    this.roundInfo.roundState = 1;
+    this.roundInfo.roundTimer = 10; // 10 seconds for redemption
+  }
+
+  endRedemption() {
+    this.roundInfo.roundState = 0;
+    this.roundInfo.roundTimer = 120; // 2 minutes for trading
+    this.roundInfo.round++;
   }
 };
