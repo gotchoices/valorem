@@ -31,10 +31,10 @@ exports.Marketplace = class {
       //compare client id to trade via message and if client.id matches
       //the trade's player.id, then accept the trade
       let player = client.id;
-      let trade = this.trades[message.id];
-      if (trade.player.id != player && trade.id == message.id) {
+      let trade = this.trades[message];
+      if (trade.player.id != player && trade.id == message) {
         trade.acceptOffer(room.players[client.id]);
-       
+        client.send("update", room.players[client.id].holdings.held);
       }
       this.broadcastTrades();
     });
