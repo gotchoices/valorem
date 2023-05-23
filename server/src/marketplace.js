@@ -34,7 +34,7 @@ exports.Marketplace = class {
       let trade = this.trades[message.id];
       if (trade.player.id != player && trade.id == message.id) {
         trade.acceptOffer(room.players[client.id]);
-        client.send("update", room.players[client.id].holdings.held);
+       
       }
       this.broadcastTrades();
     });
