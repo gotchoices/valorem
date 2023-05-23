@@ -83,6 +83,10 @@ exports.Trade = class {
     }
   }
 
+  reviewTrade() {
+  
+  }
+
   validateSeller() {
     let valid = true;
     // Confirm the seller has at least X of each "selling" entry

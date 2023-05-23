@@ -12,18 +12,32 @@ exports.MyRoom = class extends colyseus.Room {
     this.roundInfo = {
       round: 1,
       roundState: 0, // 0 for trading, 1 for redemption
-      roundTimer: 120, // 120 for trading, 10 for redemption
+      roundTimer: 120, // 120 for trading, 15 for redemption
     };
 
     let that = this;
     this.heatbeatLoop = setInterval(function () {
-      console.log(that.roundInfo);
       that.roundInfo.roundTimer--;
       if (that.roundInfo.roundTimer === 0) {
         if (that.roundInfo.roundState === 0) {
           that.endRound();
         } else {
-          that.endRedemption();
+          that.endRedemption();    
+          for (const [key, client] of Object.entries(that.clientList)) {
+            if (client) {
+              // IF NOT DEAD
+              if (that.players[client.id].holdings.held.con > 0) {
+                client.send('new round', that.players[client.id].holdings);
+              } else {
+                that.players[client.id].dead = true
+                client.send('game over');
+              }
+            }
+          }
+          that.marketplace.broadcastTrades()
+          if (that.roundInfo.round === 10) {
+            that.sendToAll('game over')
+          }
         }
       }
       that.sendToAll("heartbeat", that.roundInfo);
@@ -68,8 +82,6 @@ exports.MyRoom = class extends colyseus.Room {
       player.holdings.held.lux +=
         player.holdings.allocated.lux + 1 + player.holdings.held.luxCap / 5;
 
-      console.log(message)
-
       player.timeLeft = message.timeLeft;
       client.send("allocation accepted", player.holdings.held);
       //wait one second then send "begin trading" to the client
@@ -107,7 +119,10 @@ exports.MyRoom = class extends colyseus.Room {
 
   endRound() {
     this.roundInfo.roundState = 1;
-    this.roundInfo.roundTimer = 10; // 10 seconds for redemption
+    this.roundInfo.roundTimer = 10; // 15 seconds for redemption
+    if (this.roundInfo.round === 9) {
+      this.roundInfo.roundTimer = 1000
+    }
   }
 
   endRedemption() {

@@ -49,7 +49,7 @@ exports.Marketplace = class {
           tradeList.trades = [];
           tradeList.playerHoldings = player.holdings;
           for (const [key, trade] of Object.entries(this.trades)) {
-            if (trade.status === 1) {
+            if (trade.status === 1 && this.room.players[trade.player.id] && !this.room.players[trade.player.id].dead) {
               let tradeWrapper = {
                 owner: client.sessionId === trade.player.id,
                 trade: trade.getTradeObject(),
@@ -69,11 +69,8 @@ exports.Marketplace = class {
   removeTradesByPlayerId(id) {
     console.log("attempting to remove for " + id);
     for (const [index, item] of Object.entries(this.trades)) {
-      console.log(item);
       if (item.status === 1 && item.player.id === id) {
-        console.log("here?!");
         this.trades[index].status = 4;
-        console.log(this.trades[index]);
       }
     }
   }

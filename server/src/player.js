@@ -4,6 +4,7 @@ exports.Player = class {
     this.legacy = 0;
     this.name = name;
     this.timeLeft = 0;
+    this.dead = false
     this.doneTrading = false
     this.ready = false;
     this.trades = [];

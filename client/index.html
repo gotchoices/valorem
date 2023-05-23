@@ -40,7 +40,7 @@
 			-ms-user-select: none; /* IE10+/Edge */
 			user-select: none; /* Standard */
 		}
-		table {font-size: 18px;}
+		table {font-size: 14px;}
 		td {width: 25%; text-align: center;}
 		#allotment {
 			text-align: center;
@@ -80,7 +80,7 @@
 			display: inline-block;
 			margin-left: 10px
 		}
-		#startButton, #nameDiv, #allotmentPending, #redemptionPending {
+		#startButton, #nameDiv, #allotmentPending, #redemptionPending, #redemption, #gameover {
 			text-align: center;
 			width: 80%;
 			margin: 0 auto;
@@ -142,14 +142,15 @@
 		}
 		.allotmentCell {
 			background-color: black; 
-			margin: 10px; 
+			margin: 2px; 
 			height: 64px; 
 			display: inline-block;
-			font-size: 24px; 
-			padding: 4px;
+			font-size: 20px; 
+			padding: 0px;
 			border: 2px solid white;
     	border-radius: 5px;
-			color: white
+			color: white;
+			min-width: 86px;
 		}
 		.tradeCell {
 			background-color: black; 
@@ -238,6 +239,7 @@
 			} else {
 				player.client = new Colyseus.Client("wss://tempusvalorem.net:8000");
 			}
+			player.client = new Colyseus.Client("ws://" + window.location.hostname + ":8000");
 			player.client.joinOrCreate('my_room').then((room) => { player.room = room})
 			let animal = animals[Math.floor(Math.random() * 190)]
 			$('#name').val(animal)
@@ -371,7 +373,7 @@
 				}
 			});
 			_.each(player.holdings.held, function(holding, key) {
-				$('#' + key + '-value').html(holding)
+				$('#' + key + '-value').html(Math.round(holding * 100) / 100)
 			});
 			$('#remainingAllotment').html(player.remaining)
 		}
@@ -386,6 +388,7 @@
 
 		function startGame() {
 			$('#starter').hide()
+			player.name = $('#name').val()
 			player.room.send('player ready', $('#name').val());
 
 			player.room.onMessage("begin allocation", (data) => { 
@@ -409,6 +412,12 @@
 				$('#allotmentPending').show()
 			});
 
+			player.room.onMessage("game over", (data) => { 
+				$('#container').hide()
+				$('#container').hide()
+				$('#gameover').show()
+			});
+
 			player.room.onMessage("begin trading", (data) => { 
 				$('#allotmentPending').hide()
 				$('#trading').show()
@@ -418,10 +427,36 @@
 
 			player.room.onMessage("heartbeat", (data) => { 
 				$('#timer').html(numberToTime(data.roundTimer))
+				$('#roundCounter').html(data.round)
 			});
 
-			player.room.onMessage("heartbeat", (data) => { 
-				$('#timer').html(numberToTime(data.roundTimer))
+
+			player.room.onMessage("new round", (data) => { 
+				$('#redemption').hide()
+				$('#allotment').show()
+				player.holdings = data
+				player.holdings.allocated.con = 0
+				player.holdings.allocated.dur = 0
+				player.holdings.allocated.lux = 0
+				player.holdings.allocated.conCap = 0
+				player.holdings.allocated.durCap = 0
+				player.holdings.allocated.luxCap = 0
+				player.remaining = 5
+				populateLights();
+			});
+
+			player.room.onMessage("begin redemption", (data) => { 
+				$('#redemptionPending').hide()
+				$('#redemption').show()
+				let hs = ''
+				data = _.orderBy(data, ['score'],['desc']); // Use Lodash to sort array by 'name'
+				_.each(data, function(d) {
+					if (d.name === player.name) {
+						$('#legacy').html(Math.round(d.score * 100) / 100)
+					}
+					hs += d.name + ' - ' + Math.round(d.score * 100) / 100 + '<br/>'
+				})
+				$('#highscores').html(hs)
 			});
 
 			player.room.onMessage("eligible trades", (data) => { 
@@ -479,6 +514,7 @@
 	</script>
 </head>
 <body>
+	<div id="gameover" style="display:none">GAME OVER</div>
 	<div id="container">
 		<!-- <textarea id="log"></textarea> -->
 		<div id="starter" style="text-align: center;">
@@ -723,6 +759,9 @@
 		</div>
 		<div id="redemptionPending" style="display:none;">
 			<div>Redemption Submitted<br/><br/>Waiting for other players...</div>
+		</div>
+		<div id="redemption" style="display:none;">
+			<div>Round <span id='roundCounter'> 1 </span> Complete<br/><br/>Your Legacy<br/><span id="legacy"></span><br/><br/>Leaderboard<br/><div id='highscores'></div></div>
 		</div>
 	</div>
 </body>

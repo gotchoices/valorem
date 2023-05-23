@@ -7,7 +7,7 @@ exports.Redeemer = class {
       // check if all players are ready, if so emit "redemption"
       let ready = true;
       for (const [key, value] of Object.entries(room.players)) {
-        if (!value.doneTrading) {
+        if (!value.doneTrading && !value.dead) {
           ready = false;
         }
       }
@@ -16,7 +16,6 @@ exports.Redeemer = class {
         for (const [key, value] of Object.entries(room.players)) {
           value.doneTrading = false;
           //using 5 for prime modifier
-          console.log(value)
           value.legacy +=
           value.timeLeft *
             5 *
@@ -33,13 +32,14 @@ exports.Redeemer = class {
 
           highScores.push({
             name: value.name,
-            score: value.legacy,
-            yours: value.id === client.id
+            score: value.legacy
           })
         }
         console.log("redemption phase starting");
         room.endRound()
-        room.sendToAll("begin redemption", highScores);
+        setTimeout(() => {
+          room.sendToAll("begin redemption", highScores);
+        }, 1000);
         //send the player's legacy to the client
       }
     });
