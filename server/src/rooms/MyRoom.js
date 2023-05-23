@@ -82,6 +82,18 @@ exports.MyRoom = class extends colyseus.Room {
       player.holdings.held.lux +=
         player.holdings.allocated.lux + 1 + player.holdings.held.luxCap / 5;
 
+        player.holdings.allocated={
+          con: 0,
+          dur: 0,
+          lux: 0,
+          conCap: 0,
+          durCap: 0,
+          luxCap: 0,
+          
+
+
+        }
+        
       player.timeLeft = message.timeLeft;
       client.send("allocation accepted", player.holdings.held);
       //wait one second then send "begin trading" to the client
@@ -120,7 +132,7 @@ exports.MyRoom = class extends colyseus.Room {
   endRound() {
     this.roundInfo.roundState = 1;
     this.roundInfo.roundTimer = 10; // 15 seconds for redemption
-    if (this.roundInfo.round === 9) {
+    if (this.roundInfo.round === 10) {
       this.roundInfo.roundTimer = 1000
     }
   }
