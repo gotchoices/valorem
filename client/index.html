@@ -7,45 +7,6 @@
 	
 	<title>VALOREM</title>
 
-	<script src="lib/phaser.min.js"></script>
-	<script src="lib/colyseus.js"></script>
-
-
-	<script src="https://unpkg.com/colyseus.js@^0.15.0/dist/colyseus.js"></script>
-
-	<script src="src/classes/light.js"></script>
-	<script src="src/classes/lightContainer.js"></script>
-	<script type="module" src="src/scenes/ui.js"></script>
-	<script type="module" src="src/main.js"></script>
-	<script type="module" src="src/scenes/ui.js"></script>
-	<script type="module" src="src/scenes/trading.js"></script>
-
-	<script type="module" src="src/main.js"></script>
-
-
-	<style>
-		body {
-			background: #2f2f2f;
-			margin: 0;
-			padding: 0;
-		}
-	</style>
-
-</head>
-
-<body>
-</body>
-
-</html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
-	<title>VALOREM</title>
-
 	<!-- <script src="lib/phaser.min.js"></script> -->
 	<script src="lib/colyseus.js"></script>
 	<script src="src/animals.js"></script>
@@ -277,7 +238,6 @@
 			} else {
 				player.client = new Colyseus.Client("wss://tempusvalorem.net:8000");
 			}
-			player.client = new Colyseus.Client("ws://" + window.location.hostname + ":8000");
 			player.client.joinOrCreate('my_room').then((room) => { player.room = room})
 			let animal = animals[Math.floor(Math.random() * 190)]
 			$('#name').val(animal)
