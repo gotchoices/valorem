@@ -415,6 +415,7 @@
 				$('#container').hide()
 				$('#container').hide()
 				$('#gameover').show()
+				player.room.leave();
 			});
 
 			player.room.onMessage("begin trading", (data) => { 
