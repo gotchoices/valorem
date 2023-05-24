@@ -399,7 +399,7 @@
 			player.room.onMessage("allocation accepted", (data) => { 
 				player.holdings.held = data
 				_.each(player.holdings.held, function(holding, key) {
-					$('#display-' + key).html(Math.round(holding * 100) / 100)
+					$('#display-' + key).html(Math.round(holding * 100) / 10)
 				});
 				_.each(player.holdings.escrow, function(escrow, key) {
 					if (escrow > 0) {
@@ -428,7 +428,7 @@
 			player.room.onMessage("eligible trades", (data) => { 
 				player.holdings = data.playerHoldings
 				_.each(player.holdings.held, function(holding, key) {
-					$('#display-' + key).html(Math.round(holding * 100) / 100)
+					$('#display-' + key).html(Math.round(holding * 100) / 10)
 				});
 				_.each(player.holdings.escrow, function(escrow, key) {
 					if (escrow > 0) {

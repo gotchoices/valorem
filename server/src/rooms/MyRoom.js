@@ -26,7 +26,7 @@ exports.MyRoom = class extends colyseus.Room {
           for (const [key, client] of Object.entries(that.clientList)) {
             if (client) {
               // IF NOT DEAD
-              if (that.players[client.id].holdings.held.con > 0) {
+              if (that.players[client.id].holdings.held.con >= 0) {
                 client.send('new round', that.players[client.id].holdings);
               } else {
                 that.players[client.id].dead = true
@@ -36,7 +36,7 @@ exports.MyRoom = class extends colyseus.Room {
           }
           that.marketplace.broadcastTrades()
           if (that.roundInfo.round === 10) {
-            that.sendToAll('game over')
+             that.sendToAll('game over')
           }
         }
       }

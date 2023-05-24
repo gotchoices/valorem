@@ -372,7 +372,7 @@
 				}
 			});
 			_.each(player.holdings.held, function(holding, key) {
-				$('#' + key + '-value').html(Math.round(holding * 100) / 100)
+				$('#' + key + '-value').html(Math.round(holding * 10) / 10)
 			});
 			$('#remainingAllotment').html(player.remaining)
 		}
@@ -400,7 +400,7 @@
 			player.room.onMessage("allocation accepted", (data) => { 
 				player.holdings.held = data
 				_.each(player.holdings.held, function(holding, key) {
-					$('#display-' + key).html(Math.round(holding * 100) / 100)
+					$('#display-' + key).html(Math.round(holding * 10) / 10)
 				});
 				_.each(player.holdings.escrow, function(escrow, key) {
 					if (escrow > 0) {
@@ -451,9 +451,9 @@
 				data = _.orderBy(data, ['score'],['desc']); // Use Lodash to sort array by 'name'
 				_.each(data, function(d) {
 					if (d.name === player.name) {
-						$('#legacy').html(Math.round(d.score * 100) / 100)
+						$('#legacy').html(Math.round(d.score * 10) / 10)
 					}
-					hs += d.name + ' - ' + Math.round(d.score * 100) / 100 + '<br/>'
+					hs += d.name + ' - ' + Math.round(d.score * 10) / 10 + '<br/>'
 				})
 				$('#highscores').html(hs)
 			});
@@ -461,7 +461,7 @@
 			player.room.onMessage("eligible trades", (data) => { 
 				player.holdings = data.playerHoldings
 				_.each(player.holdings.held, function(holding, key) {
-					$('#display-' + key).html(Math.round(holding * 100) / 100)
+					$('#display-' + key).html(Math.round(holding * 10) / 10)
 				});
 				_.each(player.holdings.escrow, function(escrow, key) {
 					if (escrow > 0) {
